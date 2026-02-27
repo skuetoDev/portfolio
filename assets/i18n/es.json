@@ -1,0 +1,45 @@
+{
+  "NAV": {
+    "HOME": "Inicio",
+    "WORKS": "Trabajos",
+    "CONTACT": "Contacto",
+    "SOCIAL": "Redes",
+    "CV": "Currículum"
+  },
+  "HOME": {
+    "GREETING": "Hola, soy",
+    "SUBTITLE": "Desarrollador Full Stack",
+    "CTA_WORKS": "Ver mis trabajos",
+    "CTA_CONTACT": "Contáctame"
+  },
+  "CONTACT": {
+    "TITLE": "Contacto",
+    "NAME": "Nombre",
+    "EMAIL": "Correo electrónico",
+    "SUBJECT": "Asunto",
+    "MESSAGE": "Mensaje",
+    "SEND": "Enviar",
+    "SUCCESS": "Mensaje enviado correctamente",
+    "ERRORS": {
+      "REQUIRED": "Este campo es obligatorio",
+      "EMAIL_INVALID": "El email no es válido",
+      "MIN_LENGTH": "Mínimo {{min}} caracteres",
+      "MAX_LENGTH": "Máximo {{max}} caracteres"
+    }
+  },
+  "WORKS": {
+    "TITLE": "Mis Trabajos"
+  },
+  "CV": {
+    "TITLE": "Currículum",
+    "DOWNLOAD": "Descargar CV",
+    "EXPERIENCE": "Experiencia Profesional",
+    "PRESENT": "Actualidad"
+  },
+  "SOCIAL": {
+    "TITLE": "Redes Sociales"
+  },
+  "FOOTER": {
+    "RIGHTS": "Todos los derechos reservados"
+  }
+}

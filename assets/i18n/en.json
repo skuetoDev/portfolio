@@ -1,0 +1,45 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "WORKS": "Works",
+    "CONTACT": "Contact",
+    "SOCIAL": "Social Networks",
+    "CV": "Curriculum"
+  },
+  "HOME": {
+    "GREETING": "Hello, I am",
+    "SUBTITLE": "Full Stack Developer",
+    "CTA_WORKS": "See my works",
+    "CTA_CONTACT": "Contact me"
+  },
+  "CONTACT": {
+    "TITLE": "Contact",
+    "NAME": "Name",
+    "EMAIL": "Email",
+    "SUBJECT": "Subject",
+    "MESSAGE": "Message",
+    "SEND": "Send",
+    "SUCCESS": "Message sent successfully",
+    "ERRORS": {
+      "REQUIRED": "This field is required",
+      "EMAIL_INVALID": "The email is invalid",
+      "MIN_LENGTH": "Minimum {{min}} characters",
+      "MAX_LENGTH": "Maximum {{max}} characters"
+    }
+  },
+  "WORKS": {
+    "TITLE": "My Works"
+  },
+  "CV": {
+    "TITLE": "Curriculum",
+    "DOWNLOAD": "Download CV",
+    "EXPERIENCE": "Professional Experience",
+    "PRESENT": "Present"
+  },
+  "SOCIAL": {
+    "TITLE": "Social Networks"
+  },
+  "FOOTER": {
+    "RIGHTS": "All rights reserved"
+  }
+}
