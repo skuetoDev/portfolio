@@ -1,0 +1,1 @@
+import{Ca as o,Ma as n,Na as a,Pa as i}from"./chunk-RQHR32Q4.js";import"./chunk-ACKELEN3.js";var s=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-social"]],decls:2,vars:0,template:function(e,p){e&1&&(n(0,"p"),i(1,"social works!"),a())},encapsulation:2})};export{s as SocialComponent};
