@@ -1,1 +1,55 @@
-<p>works works!</p>
+<div class="works-page section">
+  <div class="container">
+
+    <app-section-title
+      tag="{{ 'WORKS.TAG' | translate }}"
+      title="{{ 'WORKS.TITLE' | translate }}"
+      subtitle="{{ 'WORKS.SUBTITLE' | translate }}"
+    />
+
+    <!-- Filtros por tecnología -->
+    @if (allTechs().length > 0) {
+      <div class="works-filters">
+        <button
+          class="filter-btn"
+          [class.active]="activeFilter() === 'all'"
+          (click)="setFilter('all')"
+        >
+          {{ 'WORKS.FILTER_ALL' | translate }}
+        </button>
+        @for (tech of allTechs(); track tech) {
+          <button
+            class="filter-btn"
+            [class.active]="activeFilter() === tech"
+            (click)="setFilter(tech)"
+          >
+            {{ tech }}
+          </button>
+        }
+      </div>
+    }
+
+    <!-- Loading -->
+    @if (loading()) {
+      <div class="works-loading">
+        <div class="spinner"></div>
+      </div>
+    }
+
+    <!-- Grid de trabajos -->
+    @if (!loading()) {
+      @if (filteredWorks.length > 0) {
+        <div class="works-grid">
+          @for (work of filteredWorks; track work.id) {
+            <app-work-card [work]="work" />
+          }
+        </div>
+      } @else {
+        <div class="works-empty">
+          <p>{{ 'WORKS.EMPTY' | translate }}</p>
+        </div>
+      }
+    }
+
+  </div>
+</div>

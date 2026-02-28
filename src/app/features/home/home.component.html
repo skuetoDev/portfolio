@@ -1,1 +1,129 @@
-<p>home works!</p>
+<div class="home">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero__bg-dots"></div>
+    <div class="container hero__inner">
+
+      <!-- Texto -->
+      <div class="hero__content" data-aos="fade-right">
+        <span class="hero__eyebrow">{{ 'HOME.GREETING' | translate }}</span>
+        <h1 class="hero__name">
+          Sergio <span class="gradient-text">Kueto</span>
+        </h1>
+        <p class="hero__subtitle">{{ 'HOME.SUBTITLE' | translate }}</p>
+        <p class="hero__bio">{{ 'HOME.BIO' | translate }}</p>
+
+        <div class="hero__ctas">
+          <a routerLink="/works" class="btn-primary">
+            {{ 'HOME.CTA_WORKS' | translate }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a routerLink="/contact" class="btn-secondary">
+            {{ 'HOME.CTA_CONTACT' | translate }}
+          </a>
+        </div>
+      </div>
+
+      <!-- Flip Card -->
+      <div class="hero__avatar">
+        <div class="hero__avatar-glow"></div>
+        <app-flip-card
+          [frontImage]="frontImage"
+          [backImage]="backImage"
+          altText="Sergio Kueto"
+          size="lg"
+        />
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ===== SECCIONES PREVIEW ===== -->
+  <section class="section preview-sections">
+    <div class="container">
+      <div class="preview-grid">
+
+        <a routerLink="/works" class="preview-card">
+          <div class="preview-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+            </svg>
+          </div>
+          <h3>{{ 'NAV.WORKS' | translate }}</h3>
+          <p>{{ 'HOME.PREVIEW_WORKS' | translate }}</p>
+          <span class="preview-card__arrow">→</span>
+        </a>
+
+        <a routerLink="/cv" class="preview-card">
+          <div class="preview-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+            </svg>
+          </div>
+          <h3>{{ 'NAV.CV' | translate }}</h3>
+          <p>{{ 'HOME.PREVIEW_CV' | translate }}</p>
+          <span class="preview-card__arrow">→</span>
+        </a>
+
+        <a routerLink="/social" class="preview-card">
+          <div class="preview-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+            </svg>
+          </div>
+          <h3>{{ 'NAV.SOCIAL' | translate }}</h3>
+          <p>{{ 'HOME.PREVIEW_SOCIAL' | translate }}</p>
+          <span class="preview-card__arrow">→</span>
+        </a>
+
+        <a routerLink="/contact" class="preview-card">
+          <div class="preview-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          <h3>{{ 'NAV.CONTACT' | translate }}</h3>
+          <p>{{ 'HOME.PREVIEW_CONTACT' | translate }}</p>
+          <span class="preview-card__arrow">→</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRABAJOS DESTACADOS ===== -->
+  @if (featuredWorks().length > 0) {
+    <section class="section featured-works">
+      <div class="container">
+        <app-section-title
+          tag="{{ 'HOME.FEATURED_TAG' | translate }}"
+          title="{{ 'HOME.FEATURED_TITLE' | translate }}"
+        />
+        <div class="works-grid">
+          @for (work of featuredWorks(); track work.id) {
+            <app-work-card [work]="work" />
+          }
+        </div>
+        <div class="featured-works__cta">
+          <a routerLink="/works" class="btn-secondary">
+            {{ 'HOME.SEE_ALL_WORKS' | translate }} →
+          </a>
+        </div>
+      </div>
+    </section>
+  }
+
+</div>

@@ -7,39 +7,62 @@
     "CV": "Curriculum"
   },
   "HOME": {
-    "GREETING": "Hello, I am",
+    "GREETING": "Hi, I'm",
     "SUBTITLE": "Full Stack Developer",
-    "CTA_WORKS": "See my works",
-    "CTA_CONTACT": "Contact me"
+    "BIO": "Passionate about creating unique digital experiences with modern technologies.",
+    "CTA_WORKS": "View my works",
+    "CTA_CONTACT": "Contact me",
+    "PREVIEW_WORKS": "Explore my most featured projects",
+    "PREVIEW_CV": "My professional experience and education",
+    "PREVIEW_SOCIAL": "Find me on social networks",
+    "PREVIEW_CONTACT": "Do you have a project in mind? Let's talk",
+    "FEATURED_TAG": "Featured",
+    "FEATURED_TITLE": "Latest Works",
+    "SEE_ALL_WORKS": "See all works"
+  },
+  "WORKS": {
+    "TAG": "Portfolio",
+    "TITLE": "My Works",
+    "SUBTITLE": "Projects developed with passion and technology",
+    "FILTER_ALL": "All",
+    "EMPTY": "No works available"
   },
   "CONTACT": {
-    "TITLE": "Contact",
+    "TAG": "Contact",
+    "TITLE": "Let's Talk",
+    "SUBTITLE": "Do you have a project in mind? I'm available",
     "NAME": "Name",
+    "NAME_PLACEHOLDER": "Your full name",
     "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "your@email.com",
     "SUBJECT": "Subject",
+    "SUBJECT_PLACEHOLDER": "What can I help you with?",
     "MESSAGE": "Message",
-    "SEND": "Send",
-    "SUCCESS": "Message sent successfully",
+    "MESSAGE_PLACEHOLDER": "Tell me about your project...",
+    "SEND": "Send message",
+    "SENDING": "Sending...",
+    "SUCCESS": "Message sent! I'll get back to you as soon as possible.",
+    "LOCATION": "Location",
+    "RESPONSE": "Response",
+    "RESPONSE_TIME": "Within 24 hours",
     "ERRORS": {
       "REQUIRED": "This field is required",
-      "EMAIL_INVALID": "The email is invalid",
+      "EMAIL_INVALID": "The email is not valid",
       "MIN_LENGTH": "Minimum {{min}} characters",
       "MAX_LENGTH": "Maximum {{max}} characters"
     }
   },
-  "WORKS": {
-    "TITLE": "My Works"
+  "SOCIAL": {
+    "TAG": "Social Networks",
+    "TITLE": "Find me on",
+    "SUBTITLE": "Follow me and connect on social networks"
   },
   "CV": {
-    "TITLE": "Curriculum",
+    "TAG": "Curriculum",
+    "TITLE": "My Career Path",
     "DOWNLOAD": "Download CV",
     "EXPERIENCE": "Professional Experience",
     "PRESENT": "Present"
   },
-  "SOCIAL": {
-    "TITLE": "Social Networks"
-  },
-  "FOOTER": {
-    "RIGHTS": "All rights reserved"
-  }
+  "FOOTER": { "RIGHTS": "All rights reserved" }
 }

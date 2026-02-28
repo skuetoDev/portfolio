@@ -1,1 +1,37 @@
-<p>social works!</p>
+<div class="social-page section">
+  <div class="container">
+
+    <app-section-title
+      tag="{{ 'SOCIAL.TAG' | translate }}"
+      title="{{ 'SOCIAL.TITLE' | translate }}"
+      subtitle="{{ 'SOCIAL.SUBTITLE' | translate }}"
+    />
+
+    @if (loading()) {
+      <div class="social-loading">
+        <div class="spinner"></div>
+      </div>
+    } @else {
+      <div class="social-grid">
+        @for (network of networks(); track network.id) {
+          <a
+            [href]="network.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-card"
+          >
+            <div class="social-card__icon">
+              <img
+                [src]="'assets/icons/social/' + network.icon + '.svg'"
+                [alt]="network.name"
+              />
+            </div>
+            <span class="social-card__name">{{ network.name }}</span>
+            <span class="social-card__arrow">↗</span>
+          </a>
+        }
+      </div>
+    }
+
+  </div>
+</div>

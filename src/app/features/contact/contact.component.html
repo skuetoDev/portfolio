@@ -1,1 +1,132 @@
-<p>contact works!</p>
+<div class="contact-page section">
+  <div class="container">
+
+    <app-section-title
+      tag="{{ 'CONTACT.TAG' | translate }}"
+      title="{{ 'CONTACT.TITLE' | translate }}"
+      subtitle="{{ 'CONTACT.SUBTITLE' | translate }}"
+    />
+
+    <div class="contact-layout">
+
+      <!-- Info lateral -->
+      <div class="contact-info">
+        <div class="contact-info__item">
+          <div class="contact-info__icon">✉️</div>
+          <div>
+            <strong>Email</strong>
+            <span>skuetodev&#64;gmail.com</span>
+          </div>
+        </div>
+        <div class="contact-info__item">
+          <div class="contact-info__icon">📍</div>
+          <div>
+            <strong>{{ 'CONTACT.LOCATION' | translate }}</strong>
+            <span>España</span>
+          </div>
+        </div>
+        <div class="contact-info__item">
+          <div class="contact-info__icon">⚡</div>
+          <div>
+            <strong>{{ 'CONTACT.RESPONSE' | translate }}</strong>
+            <span>{{ 'CONTACT.RESPONSE_TIME' | translate }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+        <!-- Mensaje de éxito -->
+        @if (success()) {
+          <div class="form-success">
+            <span>✅</span>
+            <p>{{ 'CONTACT.SUCCESS' | translate }}</p>
+          </div>
+        }
+
+        <!-- Nombre -->
+        <div class="form-field" [class.error]="getError('name')">
+          <label for="name">{{ 'CONTACT.NAME' | translate }}</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate"
+            autocomplete="name"
+          />
+          @if (getError('name'); as err) {
+            <span class="form-field__error">{{ err }}</span>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="form-field" [class.error]="getError('email')">
+          <label for="email">{{ 'CONTACT.EMAIL' | translate }}</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate"
+            autocomplete="email"
+          />
+          @if (getError('email'); as err) {
+            <span class="form-field__error">{{ err }}</span>
+          }
+        </div>
+
+        <!-- Asunto -->
+        <div class="form-field" [class.error]="getError('subject')">
+          <label for="subject">{{ 'CONTACT.SUBJECT' | translate }}</label>
+          <input
+            id="subject"
+            type="text"
+            formControlName="subject"
+            [placeholder]="'CONTACT.SUBJECT_PLACEHOLDER' | translate"
+          />
+          @if (getError('subject'); as err) {
+            <span class="form-field__error">{{ err }}</span>
+          }
+        </div>
+
+        <!-- Mensaje -->
+        <div class="form-field form-field--full" [class.error]="getError('message')">
+          <label for="message">
+            {{ 'CONTACT.MESSAGE' | translate }}
+            <span class="char-count">{{ messageLength }}/2000</span>
+          </label>
+          <textarea
+            id="message"
+            formControlName="message"
+            rows="6"
+            [placeholder]="'CONTACT.MESSAGE_PLACEHOLDER' | translate"
+          ></textarea>
+          @if (getError('message'); as err) {
+            <span class="form-field__error">{{ err }}</span>
+          }
+        </div>
+
+        <!-- Submit -->
+        <div class="form-actions">
+          <button
+            type="submit"
+            class="btn-primary"
+            [disabled]="sending()"
+          >
+            @if (sending()) {
+              <span class="btn-spinner"></span>
+              {{ 'CONTACT.SENDING' | translate }}
+            } @else {
+              {{ 'CONTACT.SEND' | translate }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2.5">
+                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+              </svg>
+            }
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

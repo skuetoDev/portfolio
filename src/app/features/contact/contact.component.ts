@@ -1,11 +1,117 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { SectionTitleComponent } from '../../shared/components/section-title/section-title.component';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
-  imports: [],
+  standalone: true,
+  imports: [
+    CommonModule,
+    TranslateModule,
+    ReactiveFormsModule,
+    SectionTitleComponent,
+  ],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss'
+  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent {
+  form: FormGroup;
+  submitted = signal(false);
+  success = signal(false);
+  sending = signal(false);
 
+  constructor(
+    private fb: FormBuilder,
+    private translate: TranslateService,
+  ) {
+    this.form = this.fb.group({
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(60),
+        ],
+      ],
+      email: [
+        '',
+        [Validators.required, Validators.email, Validators.maxLength(100)],
+      ],
+      subject: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(100),
+        ],
+      ],
+      message: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(20),
+          Validators.maxLength(2000),
+        ],
+      ],
+    });
+  }
+
+  // Acceso rápido a los campos
+  get f() {
+    return this.form.controls;
+  }
+
+  getError(field: string): string | null {
+    const control = this.form.get(field);
+    if (
+      !control ||
+      !control.invalid ||
+      (!this.submitted() && !control.touched)
+    ) {
+      return null;
+    }
+    if (control.hasError('required'))
+      return this.translate.instant('CONTACT.ERRORS.REQUIRED');
+    if (control.hasError('email'))
+      return this.translate.instant('CONTACT.ERRORS.EMAIL_INVALID');
+    if (control.hasError('minlength')) {
+      const min = control.errors?.['minlength'].requiredLength;
+      return this.translate.instant('CONTACT.ERRORS.MIN_LENGTH', { min });
+    }
+    if (control.hasError('maxlength')) {
+      const max = control.errors?.['maxlength'].requiredLength;
+      return this.translate.instant('CONTACT.ERRORS.MAX_LENGTH', { max });
+    }
+    return null;
+  }
+
+  get messageLength(): number {
+    return this.form.get('message')?.value?.length || 0;
+  }
+
+  async onSubmit(): Promise<void> {
+    this.submitted.set(true);
+    if (this.form.invalid) return;
+
+    this.sending.set(true);
+
+    // 💡 Aquí integrarías EmailJS, Formspree, o similar
+    // Por ahora simulamos un envío
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    this.success.set(true);
+    this.sending.set(false);
+    this.form.reset();
+    this.submitted.set(false);
+
+    // Oculta el mensaje de éxito tras 5 segundos
+    setTimeout(() => this.success.set(false), 5000);
+  }
 }
