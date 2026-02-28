@@ -1,1 +1,0 @@
-import{Ca as n,Ma as o,Na as a,Pa as c}from"./chunk-RQHR32Q4.js";import"./chunk-ACKELEN3.js";var p=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["app-contact"]],decls:2,vars:0,template:function(t,i){t&1&&(o(0,"p"),c(1,"contact works!"),a())},encapsulation:2})};export{p as ContactComponent};

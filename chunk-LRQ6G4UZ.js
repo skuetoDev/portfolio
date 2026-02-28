@@ -1,0 +1,1 @@
+import{Ja as o,Wa as n,Xa as i,db as p}from"./chunk-HZV57N77.js";import"./chunk-ACKELEN3.js";var r=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-profile"]],decls:2,vars:0,template:function(e,f){e&1&&(n(0,"p"),p(1,"profile works!"),i())},encapsulation:2})};export{r as ProfileComponent};

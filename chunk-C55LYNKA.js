@@ -1,1 +1,0 @@
-import{Ca as o,Ma as n,Na as s,Pa as r}from"./chunk-RQHR32Q4.js";import"./chunk-ACKELEN3.js";var p=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-works"]],decls:2,vars:0,template:function(e,i){e&1&&(n(0,"p"),r(1,"works works!"),s())},encapsulation:2})};export{p as WorksComponent};

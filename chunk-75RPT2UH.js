@@ -1,0 +1,1 @@
+import{Ja as n,Wa as o,Xa as p,db as a}from"./chunk-HZV57N77.js";import"./chunk-ACKELEN3.js";var c=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-cv"]],decls:2,vars:0,template:function(e,i){e&1&&(o(0,"p"),a(1,"cv works!"),p())},encapsulation:2})};export{c as CvComponent};

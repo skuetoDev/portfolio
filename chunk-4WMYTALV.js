@@ -1,1 +1,0 @@
-import{Ca as n,Ma as o,Na as p,Pa as a}from"./chunk-RQHR32Q4.js";import"./chunk-ACKELEN3.js";var c=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-cv"]],decls:2,vars:0,template:function(e,i){e&1&&(o(0,"p"),a(1,"cv works!"),p())},encapsulation:2})};export{c as CvComponent};
