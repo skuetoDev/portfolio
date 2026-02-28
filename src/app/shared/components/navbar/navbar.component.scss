@@ -6,19 +6,27 @@
   height: var(--navbar-height);
   z-index: 1000;
   transition: all var(--transition-normal);
+  
 
   &.scrolled {
-    background: rgba(10, 10, 15, 0.85);
+    background: var(--golden-color-glow);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--color-border);
     box-shadow: var(--shadow-md);
+
+    .logo-name { color: white; }
+    .logo-name:hover { color: var(--blue-color); }
   }
+ 
 
   &__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    background: transparent !important;
+
+    
   }
 
   // Logo
@@ -30,16 +38,17 @@
     align-items: center;
     gap: 2px;
 
+    
     .logo-symbol {
-      color: var(--color-accent);
+      color: var(--white-color);
     }
 
     .logo-name {
       color: var(--color-text);
     }
-
     &:hover .logo-name {
-      color: var(--color-accent-light);
+      color: var(--golden-color);
+      
     }
   }
 
@@ -65,12 +74,12 @@
 
     &:hover {
       color: var(--color-text);
-      background: var(--color-surface);
+      background: var(--blue-color-glow);
     }
 
     &.active {
-      color: var(--color-accent-light);
-      background: var(--color-accent-glow);
+      color: var(--blue-color);
+      background: var(--blue-color-glow);
     }
   }
 
@@ -100,11 +109,13 @@
   transition: color var(--transition-fast);
 
   &.active {
-    color: var(--color-accent-light);
+    color: var(--blue-color);
+    font-weight: 800;
   }
 
   &:hover {
-    color: var(--color-text);
+    background: var(--blue-color-glow);
+    
   }
 }
 

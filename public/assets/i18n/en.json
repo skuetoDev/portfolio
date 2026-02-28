@@ -1,64 +1,64 @@
-{
-  "NAV": {
+   {
+    "NAV": {
     "HOME": "Home",
     "WORKS": "Works",
     "CONTACT": "Contact",
-    "SOCIAL": "Social Networks",
-    "CV": "Curriculum"
+    "SOCIAL": "Social",
+    "CV": "CV"
   },
   "HOME": {
-    "GREETING": "Hi, I'm",
+    "GREETING": "Hello, I'm",
     "SUBTITLE": "Full Stack Developer",
-    "BIO": "Passionate about creating unique digital experiences with modern technologies.",
+    "BIO": "My name is Mario and I am passionate about creating unique and functional digital experiences with modern technologies.",
     "CTA_WORKS": "View my works",
     "CTA_CONTACT": "Contact me",
-    "PREVIEW_WORKS": "Explore my most featured projects",
+    "PREVIEW_WORKS": "Explore all my projects ",
     "PREVIEW_CV": "My professional experience and education",
-    "PREVIEW_SOCIAL": "Find me on social networks",
-    "PREVIEW_CONTACT": "Do you have a project in mind? Let's talk",
+    "PREVIEW_SOCIAL": "Find me on main social networks",
+    "PREVIEW_CONTACT": "Want to talk? Send me a message",
     "FEATURED_TAG": "Featured",
-    "FEATURED_TITLE": "Latest Works",
+    "FEATURED_TITLE": "Latest works",
     "SEE_ALL_WORKS": "See all works"
   },
   "WORKS": {
     "TAG": "Portfolio",
     "TITLE": "My Works",
-    "SUBTITLE": "Projects developed with passion and technology",
+    "SUBTITLE": "Projects developed with passion and modern technology",
     "FILTER_ALL": "All",
     "EMPTY": "No works available"
   },
   "CONTACT": {
     "TAG": "Contact",
-    "TITLE": "Let's Talk",
-    "SUBTITLE": "Do you have a project in mind? I'm available",
+    "TITLE": "Let's talk",
+    "SUBTITLE": "If you want to contact me, send me a message",
     "NAME": "Name",
     "NAME_PLACEHOLDER": "Your full name",
     "EMAIL": "Email",
-    "EMAIL_PLACEHOLDER": "your@email.com",
+    "EMAIL_PLACEHOLDER": "tu@email.com",
     "SUBJECT": "Subject",
     "SUBJECT_PLACEHOLDER": "What can I help you with?",
     "MESSAGE": "Message",
-    "MESSAGE_PLACEHOLDER": "Tell me about your project...",
+    "MESSAGE_PLACEHOLDER": "Your message here...",
     "SEND": "Send message",
     "SENDING": "Sending...",
     "SUCCESS": "Message sent! I'll get back to you as soon as possible.",
     "LOCATION": "Location",
     "RESPONSE": "Response",
-    "RESPONSE_TIME": "Within 24 hours",
+    "RESPONSE_TIME": "As fast as lightning",
     "ERRORS": {
       "REQUIRED": "This field is required",
-      "EMAIL_INVALID": "The email is not valid",
+      "EMAIL_INVALID": "The email is invalid",
       "MIN_LENGTH": "Minimum {{min}} characters",
       "MAX_LENGTH": "Maximum {{max}} characters"
     }
   },
   "SOCIAL": {
-    "TAG": "Social Networks",
-    "TITLE": "Find me on",
-    "SUBTITLE": "Follow me and connect on social networks"
+    "TAG": "Social",
+    "TITLE": "You can find me on",
+    "SUBTITLE": "the following social networks, Let's connect!"
   },
   "CV": {
-    "TAG": "Curriculum",
+    "TAG": "CV",
     "TITLE": "My Career Path",
     "DOWNLOAD": "Download CV",
     "EXPERIENCE": "Professional Experience",

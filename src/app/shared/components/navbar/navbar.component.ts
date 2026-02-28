@@ -24,7 +24,7 @@ export class NavbarComponent {
   ];
 
   constructor(private translate: TranslateService) {
-    this.currentLang.set(translate.currentLang || 'es');
+    translate.onLangChange.subscribe(({ lang }) => this.currentLang.set(lang));
   }
 
   @HostListener('window:scroll')

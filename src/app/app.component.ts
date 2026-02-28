@@ -8,21 +8,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, NavbarComponent, FooterComponent],
-  template: `
-    <app-navbar />
-    <main class="main-content">
-      <router-outlet />
-    </main>
-    <app-footer />
-  `,
-  styles: [
-    `
-      .main-content {
-        min-height: calc(100vh - var(--navbar-height));
-        padding-top: var(--navbar-height);
-      }
-    `,
-  ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   constructor(private translate: TranslateService) {}

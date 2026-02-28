@@ -35,7 +35,7 @@ export interface Experience {
   role: string;
   roleI18n: { [lang: string]: string };
   startDate: Date;
-  endDate?: Date; // null = trabajo actual
+  endDate?: Date | null ; 
   current: boolean;
   descriptionI18n: { [lang: string]: string };
   technologies: string[];

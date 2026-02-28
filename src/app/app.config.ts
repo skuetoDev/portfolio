@@ -1,8 +1,7 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter, withHashLocation } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { HttpClient } from '@angular/common/http';
 
 // Firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -11,15 +10,11 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
 // i18n
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 import { environment } from '../../environments/environment';
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader();
-}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,15 +30,7 @@ export const appConfig: ApplicationConfig = {
     provideStorage(() => getStorage()),
 
     // i18n
-    importProvidersFrom(
-      TranslateModule.forRoot({
-        defaultLanguage: 'es',
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
-        },
-      }),
-    ),
+    provideTranslateService({ defaultLanguage: 'es' }),
+    ...provideTranslateHttpLoader(),
   ],
 };

@@ -25,9 +25,9 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent implements OnInit {
   featuredWorks = signal<Work[]>([]);
 
-  // Sustituye estas URLs por tus imágenes reales en /assets/images/
-  frontImage = 'assets/images/avatar-front.jpg';
-  backImage = 'assets/images/avatar-back.jpg';
+  // Flip Card
+  frontImage = '/images/flip-Card/Foto_CV.webp';
+  backImage = '/images/flip-Card/skuetoDev.webp';
 
   constructor(private worksService: WorksService) {}
 

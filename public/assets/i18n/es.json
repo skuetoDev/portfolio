@@ -9,13 +9,13 @@
   "HOME": {
     "GREETING": "Hola, soy",
     "SUBTITLE": "Desarrollador Full Stack",
-    "BIO": "Apasionado por crear experiencias digitales únicas con tecnologías modernas.",
+    "BIO": "Mi nombre es Mario y soy un Apasionado por crear experiencias digitales únicas y funcionales con tecnologías modernas.",
     "CTA_WORKS": "Ver mis trabajos",
     "CTA_CONTACT": "Contáctame",
-    "PREVIEW_WORKS": "Explora mis proyectos más destacados",
+    "PREVIEW_WORKS": "Explora todos mis proyectos ",
     "PREVIEW_CV": "Mi experiencia y formación profesional",
     "PREVIEW_SOCIAL": "Encuéntrame en las principales redes",
-    "PREVIEW_CONTACT": "¿Tienes un proyecto? Hablemos",
+    "PREVIEW_CONTACT": "¿Quieres hablar? Escribeme un mensaje",
     "FEATURED_TAG": "Destacados",
     "FEATURED_TITLE": "Últimos trabajos",
     "SEE_ALL_WORKS": "Ver todos los trabajos"
@@ -30,7 +30,7 @@
   "CONTACT": {
     "TAG": "Contacto",
     "TITLE": "Hablemos",
-    "SUBTITLE": "¿Tienes un proyecto en mente? Estoy disponible",
+    "SUBTITLE": "Si quieres contactar conmigo, envíame un mensaje",
     "NAME": "Nombre",
     "NAME_PLACEHOLDER": "Tu nombre completo",
     "EMAIL": "Email",
@@ -38,13 +38,13 @@
     "SUBJECT": "Asunto",
     "SUBJECT_PLACEHOLDER": "¿En qué puedo ayudarte?",
     "MESSAGE": "Mensaje",
-    "MESSAGE_PLACEHOLDER": "Cuéntame tu proyecto...",
+    "MESSAGE_PLACEHOLDER": "Aqui tu mensaje...",
     "SEND": "Enviar mensaje",
     "SENDING": "Enviando...",
     "SUCCESS": "¡Mensaje enviado! Te responderé lo antes posible.",
     "LOCATION": "Ubicación",
     "RESPONSE": "Respuesta",
-    "RESPONSE_TIME": "En menos de 24h",
+    "RESPONSE_TIME": "Como un rayo",
     "ERRORS": {
       "REQUIRED": "Este campo es obligatorio",
       "EMAIL_INVALID": "El email no es válido",
@@ -54,8 +54,8 @@
   },
   "SOCIAL": {
     "TAG": "Redes",
-    "TITLE": "Encuéntrame en",
-    "SUBTITLE": "Sígueme y conectemos en las redes sociales"
+    "TITLE": "Puedes encontrarme en",
+    "SUBTITLE": "las siguientes redes sociales, Conectemos!"
   },
   "CV": {
     "TAG": "Currículum",
