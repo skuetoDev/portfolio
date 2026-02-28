@@ -1,1 +1,142 @@
-<p>manage-social works!</p>
+<div class="manage-page">
+
+  <div class="manage-header">
+    <div>
+      <h1 class="manage-title">Redes Sociales</h1>
+      <p class="manage-subtitle">{{ networks().length }} redes configuradas</p>
+    </div>
+    <button class="btn-primary" (click)="openNew()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Nueva red
+    </button>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-state"><div class="spinner"></div></div>
+  } @else {
+    <div class="networks-list">
+      @for (network of networks(); track network.id) {
+        <div class="network-row" [class.hidden]="!network.visible">
+
+          <div class="network-row__icon">
+            <img [src]="'assets/icons/social/' + network.icon + '.svg'"
+                 [alt]="network.name"
+                 (error)="$any($event.target).style.display='none'" />
+            <span>{{ network.name.charAt(0) }}</span>
+          </div>
+
+          <div class="network-row__info">
+            <strong>{{ network.name }}</strong>
+            <a [href]="network.url" target="_blank" class="network-url">
+              {{ network.url }}
+            </a>
+          </div>
+
+          <div class="network-row__actions">
+            <button
+              class="action-btn" [class.active]="network.visible"
+              [title]="network.visible ? 'Ocultar' : 'Mostrar'"
+              (click)="toggle(network)"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+            <button class="action-btn" title="Editar" (click)="openEdit(network)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+            </button>
+            <button class="action-btn action-btn--danger" (click)="delete(network)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      }
+
+      @if (networks().length === 0) {
+        <div class="empty-state"><p>No hay redes configuradas aún.</p></div>
+      }
+    </div>
+  }
+
+  <!-- Modal -->
+  @if (showForm()) {
+    <div class="modal-backdrop" (click)="closeForm()">
+      <div class="modal" (click)="$event.stopPropagation()">
+
+        <div class="modal__header">
+          <h2>{{ editingId() ? 'Editar red' : 'Nueva red social' }}</h2>
+          <button class="modal__close" (click)="closeForm()">✕</button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="modal__body">
+
+          <!-- Presets rápidos -->
+          <div class="form-field">
+            <label>Selección rápida</label>
+            <div class="presets">
+              @for (preset of presetIcons; track preset.icon) {
+                <button type="button" class="preset-btn" (click)="selectPreset(preset)">
+                  <img [src]="'assets/icons/social/' + preset.icon + '.svg'"
+                       [alt]="preset.name"
+                       (error)="$any($event.target).style.display='none'" />
+                  {{ preset.name }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label>Nombre *</label>
+              <input type="text" formControlName="name" placeholder="GitHub" />
+            </div>
+            <div class="form-field">
+              <label>Icono (nombre SVG) *</label>
+              <input type="text" formControlName="icon" placeholder="github" />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>URL *</label>
+            <input type="url" formControlName="url" placeholder="https://github.com/usuario" />
+          </div>
+
+          <div class="form-row form-row--small">
+            <div class="form-field">
+              <label>Orden</label>
+              <input type="number" formControlName="order" min="0" />
+            </div>
+            <div class="form-field form-field--checkbox">
+              <label class="checkbox-label">
+                <input type="checkbox" formControlName="visible" />
+                <span>Visible</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="modal__footer">
+            <button type="button" class="btn-secondary" (click)="closeForm()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-primary" [disabled]="saving() || form.invalid">
+              {{ saving() ? 'Guardando...' : (editingId() ? 'Guardar' : 'Crear') }}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  }
+
+</div>

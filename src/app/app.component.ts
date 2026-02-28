@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   constructor(private translate: TranslateService) {}
 
   ngOnInit(): void {
-    // Detecta idioma del navegador o usa español por defecto
     const browserLang = this.translate.getBrowserLang();
     const lang = browserLang?.match(/es|en/) ? browserLang : 'es';
     this.translate.use(lang);

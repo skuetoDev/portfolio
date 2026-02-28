@@ -1,1 +1,186 @@
-<p>manage-cv works!</p>
+<div class="manage-page">
+
+  <div class="manage-header">
+    <div>
+      <h1 class="manage-title">Currículum</h1>
+      <p class="manage-subtitle">Gestiona tu CV y experiencia profesional</p>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-state"><div class="spinner"></div></div>
+  } @else {
+
+    <!-- PDF -->
+    <div class="cv-section">
+      <h2 class="section-heading">Archivo PDF</h2>
+      <div class="pdf-card">
+        @if (profile()?.cvFileUrl) {
+          <div class="pdf-current">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <path d="M14 2v6h6"/>
+            </svg>
+            <div>
+              <strong>CV actual</strong>
+              <a [href]="profile()!.cvFileUrl" target="_blank" class="pdf-link">
+                Ver / Descargar ↗
+              </a>
+            </div>
+          </div>
+        }
+        <label class="upload-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          {{ profile()?.cvFileUrl ? 'Reemplazar PDF' : 'Subir PDF' }}
+          <input type="file" accept="application/pdf"
+                 (change)="onPdfChange($event)" hidden />
+        </label>
+        @if (uploadProgress() > 0) {
+          <div class="progress-bar">
+            <div class="progress-bar__fill" [style.width.%]="uploadProgress()"></div>
+          </div>
+          <span class="progress-label">Subiendo... {{ uploadProgress() }}%</span>
+        }
+      </div>
+    </div>
+
+    <!-- Experiencias -->
+    <div class="cv-section">
+      <div class="section-header">
+        <h2 class="section-heading">Experiencia Profesional</h2>
+        <button class="btn-primary" (click)="openNewExp()">
+          + Añadir experiencia
+        </button>
+      </div>
+
+      <div class="exp-list">
+        @for (exp of profile()?.experiences; track $index; let i = $index) {
+          <div class="exp-card">
+            <div class="exp-card__info">
+              <div class="exp-card__header">
+                <strong>{{ exp.role }}</strong>
+                @if (exp.current) {
+                  <span class="badge-current">Actual</span>
+                }
+              </div>
+              <span class="exp-card__company">{{ exp.company }}</span>
+              <span class="exp-card__dates">
+                {{ exp.startDate | date:'MMM yyyy' }} —
+                {{ exp.current ? 'Actualidad' : (exp.endDate | date:'MMM yyyy') }}
+              </span>
+              <div class="exp-card__techs">
+                @for (tech of exp.technologies; track tech) {
+                  <span class="tech-chip">{{ tech }}</span>
+                }
+              </div>
+            </div>
+            <div class="exp-card__actions">
+              <button class="action-btn" (click)="openEditExp(exp, i)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </button>
+              <button class="action-btn action-btn--danger" (click)="deleteExp(i)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        }
+
+        @if (!profile()?.experiences?.length) {
+          <div class="empty-state"><p>No hay experiencias añadidas aún.</p></div>
+        }
+      </div>
+    </div>
+
+  }
+
+  <!-- Modal experiencia -->
+  @if (showExpForm()) {
+    <div class="modal-backdrop" (click)="closeExpForm()">
+      <div class="modal" (click)="$event.stopPropagation()">
+
+        <div class="modal__header">
+          <h2>{{ editingExpIdx() !== null ? 'Editar experiencia' : 'Nueva experiencia' }}</h2>
+          <button class="modal__close" (click)="closeExpForm()">✕</button>
+        </div>
+
+        <form [formGroup]="expForm" (ngSubmit)="saveExp()" class="modal__body">
+
+          <div class="form-row">
+            <div class="form-field">
+              <label>Empresa *</label>
+              <input type="text" formControlName="company" placeholder="Nombre de la empresa" />
+            </div>
+            <div class="form-field">
+              <label>Cargo (ES) *</label>
+              <input type="text" formControlName="role" placeholder="Frontend Developer" />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Cargo (EN)</label>
+            <input type="text" formControlName="roleEn" placeholder="Frontend Developer" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label>Fecha inicio *</label>
+              <input type="date" formControlName="startDate" />
+            </div>
+            <div class="form-field">
+              <label>Fecha fin</label>
+              <input type="date" formControlName="endDate"
+                     [attr.disabled]="expForm.get('current')?.value ? true : null" />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="checkbox-label">
+              <input type="checkbox" formControlName="current" />
+              <span>Trabajo actual</span>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label>Descripción (ES) *</label>
+              <textarea formControlName="descEs" rows="3"
+                        placeholder="Descripción del puesto..."></textarea>
+            </div>
+            <div class="form-field">
+              <label>Descripción (EN)</label>
+              <textarea formControlName="descEn" rows="3"
+                        placeholder="Job description..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Tecnologías (separadas por coma)</label>
+            <input type="text" formControlName="technologies"
+                   placeholder="Angular, Firebase, TypeScript" />
+          </div>
+
+          <div class="modal__footer">
+            <button type="button" class="btn-secondary" (click)="closeExpForm()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-primary" [disabled]="saving() || expForm.invalid">
+              {{ saving() ? 'Guardando...' : 'Guardar' }}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  }
+
+</div>

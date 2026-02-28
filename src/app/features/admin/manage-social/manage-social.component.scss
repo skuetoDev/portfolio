@@ -1,0 +1,90 @@
+// Reutiliza los mismos estilos base de manage-works
+// Solo añadimos lo específico de esta pantalla
+@use '../manage-works/manage-works.component' as *;
+
+.networks-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.network-row {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: var(--space-md);
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  transition: all var(--transition-fast);
+
+  &.hidden { opacity: 0.45; }
+  &:hover  { border-color: var(--color-accent); }
+
+  &__icon {
+    width: 44px; height: 44px;
+    background: var(--color-surface-alt);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+
+    img { width: 26px; height: 26px; object-fit: contain; }
+    span {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-accent);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    strong { font-size: 0.95rem; color: var(--color-text); }
+  }
+
+  &__actions {
+    display: flex;
+    gap: var(--space-xs);
+  }
+}
+
+.network-url {
+  font-size: 0.78rem;
+  color: var(--color-accent-light);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 300px;
+
+  &:hover { text-decoration: underline; }
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.preset-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+
+  img { width: 16px; height: 16px; }
+
+  &:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent-light);
+    background: var(--color-accent-glow);
+  }
+}

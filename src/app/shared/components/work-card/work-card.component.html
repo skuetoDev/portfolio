@@ -3,12 +3,12 @@
   <!-- Media -->
   <div class="work-card__media">
     @if (work.mediaType === 'video') {
-      <video [src]="work.mediaUrl" muted loop playsinline
+      <video [src]="work.mediaUrl | safeUrl" muted loop playsinline
              (mouseenter)="$any($event.target).play()"
              (mouseleave)="$any($event.target).pause()">
       </video>
     } @else {
-      <img [src]="work.mediaUrl" [alt]="work.title" loading="lazy" />
+      <img [src]="work.mediaUrl | safeUrl" [alt]="work.title" loading="lazy" />
     }
     <div class="work-card__overlay">
       <span class="work-card__view-label">Ver proyecto</span>
@@ -18,7 +18,7 @@
   <!-- Contenido -->
   <div class="work-card__body">
     <h3 class="work-card__title">{{ work.title }}</h3>
-    <p class="work-card__desc">{{ description }}</p>
+    <p class="work-card__desc">{{ description | truncate:100:'… leer más' }}</p>
 
     <!-- Tecnologías -->
     <div class="work-card__techs">

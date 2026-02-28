@@ -1,1 +1,86 @@
-<p>profile works!</p>
+<div class="manage-page">
+
+  <div class="manage-header">
+    <div>
+      <h1 class="manage-title">Perfil</h1>
+      <p class="manage-subtitle">{{ auth.currentUser()?.email }}</p>
+    </div>
+  </div>
+
+  <div class="profile-card">
+    <h2 class="section-heading">Cambiar contraseña</h2>
+
+    @if (success()) {
+      <div class="alert alert--success">
+        ✅ Contraseña actualizada correctamente
+      </div>
+    }
+
+    @if (error()) {
+      <div class="alert alert--error">
+        ⚠ {{ error() }}
+      </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="form-field">
+        <label>Contraseña actual</label>
+        <input type="password" formControlName="currentPassword"
+               placeholder="••••••••" autocomplete="current-password" />
+        @if (f['currentPassword'].invalid && f['currentPassword'].touched) {
+          <span class="field-error">Requerida</span>
+        }
+      </div>
+
+      <div class="form-field">
+        <label>Nueva contraseña</label>
+        <input type="password" formControlName="newPassword"
+               placeholder="Mínimo 8 caracteres, 1 mayúscula, 1 número, 1 símbolo"
+               autocomplete="new-password" />
+        @if (f['newPassword'].errors?.['minlength'] && f['newPassword'].touched) {
+          <span class="field-error">Mínimo 8 caracteres</span>
+        }
+        @if (f['newPassword'].errors?.['pattern'] && f['newPassword'].touched) {
+          <span class="field-error">
+            Debe tener al menos 1 mayúscula, 1 número y 1 símbolo
+          </span>
+        }
+      </div>
+
+      <div class="form-field">
+        <label>Confirmar contraseña</label>
+        <input type="password" formControlName="confirmPassword"
+               placeholder="Repite la nueva contraseña"
+               autocomplete="new-password" />
+        @if (form.errors?.['mismatch'] && f['confirmPassword'].touched) {
+          <span class="field-error">Las contraseñas no coinciden</span>
+        }
+      </div>
+
+      <div class="password-rules">
+        <p>La nueva contraseña debe tener:</p>
+        <ul>
+          <li [class.ok]="(f['newPassword'].value?.length || 0) >= 8">
+            ✓ Mínimo 8 caracteres
+          </li>
+          <li [class.ok]="hasUppercase()">
+            ✓ Al menos 1 mayúscula
+          </li>
+          <li [class.ok]="hasNumber()">
+            ✓ Al menos 1 número
+          </li>
+          <li [class.ok]="hasSymbol()">
+            ✓ Al menos 1 símbolo (!&#64;#$...)
+          </li>
+        </ul>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="saving() || form.invalid">
+        {{ saving() ? 'Actualizando...' : 'Cambiar contraseña' }}
+      </button>
+
+    </form>
+  </div>
+
+</div>

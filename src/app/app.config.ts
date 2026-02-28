@@ -30,7 +30,7 @@ export const appConfig: ApplicationConfig = {
     provideStorage(() => getStorage()),
 
     // i18n
-    provideTranslateService({ defaultLanguage: 'es' }),
+    provideTranslateService({ fallbackLang: 'es' }),
     ...provideTranslateHttpLoader(),
   ],
 };

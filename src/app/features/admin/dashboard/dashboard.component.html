@@ -1,1 +1,75 @@
-<p>dashboard works!</p>
+<div class="admin-layout" [class.sidebar-collapsed]="!sidebarOpen()">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+
+    <div class="sidebar__header">
+      <div class="sidebar__logo">
+        <span class="logo-symbol">&lt;</span>
+        <span class="logo-text">admin</span>
+        <span class="logo-symbol">/&gt;</span>
+      </div>
+      <button class="sidebar__toggle" (click)="toggleSidebar()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Usuario -->
+    <div class="sidebar__user">
+      <div class="sidebar__avatar">
+        {{ auth.currentUser()?.email?.charAt(0)?.toUpperCase() }}
+      </div>
+      <div class="sidebar__user-info">
+        <span class="sidebar__user-name">Admin</span>
+        <span class="sidebar__user-email">{{ auth.currentUser()?.email }}</span>
+      </div>
+    </div>
+
+    <!-- Menú -->
+    <nav class="sidebar__nav">
+      @for (item of menuItems; track item.path) {
+         <a
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          class="sidebar__link"
+        >
+          <span class="sidebar__link-icon" [innerHTML]="item.icon"></span>
+          <span class="sidebar__link-label">{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+
+    <!-- Acciones footer sidebar -->
+    <div class="sidebar__footer">
+      <a routerLink="/" class="sidebar__link sidebar__link--muted">
+        <span class="sidebar__link-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </span>
+        <span class="sidebar__link-label">Ver portfolio</span>
+      </a>
+
+      <button class="sidebar__link sidebar__link--danger" (click)="logout()">
+        <span class="sidebar__link-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </span>
+        <span class="sidebar__link-label">Cerrar sesión</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="admin-main">
+    <router-outlet />
+  </main>
+
+</div>

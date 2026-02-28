@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Work } from '../../../core/models/index';
 import { TranslateService } from '@ngx-translate/core';
 import { TechBadgeComponent } from '../tech-badge/tech-badge.component';
+import { SafeUrlPipe } from "../../pipes/safe-url.pipe";
+import { TruncatePipe } from "../../pipes/truncate.pipe";
 
 @Component({
   selector: 'app-work-card',
   standalone: true,
-  imports: [CommonModule, TechBadgeComponent],
+  imports: [CommonModule, TechBadgeComponent, SafeUrlPipe, TruncatePipe],
   templateUrl: './work-card.component.html',
   styleUrls: ['./work-card.component.scss'],
 })
