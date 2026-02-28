@@ -1,1 +1,0 @@
-import{Ja as n,Wa as o,Xa as a,db as c}from"./chunk-HZV57N77.js";import"./chunk-ACKELEN3.js";var p=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["app-contact"]],decls:2,vars:0,template:function(t,i){t&1&&(o(0,"p"),c(1,"contact works!"),a())},encapsulation:2})};export{p as ContactComponent};

@@ -1,0 +1,1 @@
+var e={production:!1,adminEmail:"skuetodev@gmail.com",firebase:{apiKey:"AIzaSyBPQphczrIAaUTt3t9GjWag1Emr5C2dzqM",authDomain:"skuetodev-portfolio.firebaseapp.com",projectId:"skuetodev-portfolio",storageBucket:"skuetodev-portfolio.firebasestorage.app",messagingSenderId:"507865355930",appId:"1:507865355930:web:9293a4ba2fa7bc6618f123",measurementId:"G-7W0RGKDJGW"}};export{e as a};

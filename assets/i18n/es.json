@@ -1,0 +1,68 @@
+{
+  "NAV": {
+    "HOME": "Inicio",
+    "WORKS": "Trabajos",
+    "CONTACT": "Contacto",
+    "SOCIAL": "Redes",
+    "CV": "Currículum"
+  },
+  "HOME": {
+    "GREETING": "Hola, soy",
+    "SUBTITLE": "Desarrollador Full Stack",
+    "BIO": "Mi nombre es Mario y soy un Apasionado por crear experiencias digitales únicas y funcionales con tecnologías modernas.",
+    "CTA_WORKS": "Ver mis trabajos",
+    "CTA_CONTACT": "Contáctame",
+    "PREVIEW_WORKS": "Explora todos mis proyectos ",
+    "PREVIEW_CV": "Mi experiencia y formación profesional",
+    "PREVIEW_SOCIAL": "Encuéntrame en las principales redes",
+    "PREVIEW_CONTACT": "¿Quieres hablar? Escribeme un mensaje",
+    "FEATURED_TAG": "Destacados",
+    "FEATURED_TITLE": "Últimos trabajos",
+    "SEE_ALL_WORKS": "Ver todos los trabajos"
+  },
+  "WORKS": {
+    "TAG": "Portfolio",
+    "TITLE": "Mis Trabajos",
+    "SUBTITLE": "Proyectos desarrollados con pasión y tecnología",
+    "FILTER_ALL": "Todos",
+    "EMPTY": "No hay trabajos disponibles"
+  },
+  "CONTACT": {
+    "TAG": "Contacto",
+    "TITLE": "Hablemos",
+    "SUBTITLE": "Si quieres contactar conmigo, envíame un mensaje",
+    "NAME": "Nombre",
+    "NAME_PLACEHOLDER": "Tu nombre completo",
+    "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "tu@email.com",
+    "SUBJECT": "Asunto",
+    "SUBJECT_PLACEHOLDER": "¿En qué puedo ayudarte?",
+    "MESSAGE": "Mensaje",
+    "MESSAGE_PLACEHOLDER": "Aqui tu mensaje...",
+    "SEND": "Enviar mensaje",
+    "SENDING": "Enviando...",
+    "SUCCESS": "¡Mensaje enviado! Te responderé lo antes posible.",
+    "LOCATION": "Ubicación",
+    "RESPONSE": "Respuesta",
+    "RESPONSE_TIME": "Como un rayo",
+    "ERRORS": {
+      "REQUIRED": "Este campo es obligatorio",
+      "EMAIL_INVALID": "El email no es válido",
+      "MIN_LENGTH": "Mínimo {{min}} caracteres",
+      "MAX_LENGTH": "Máximo {{max}} caracteres"
+    }
+  },
+  "SOCIAL": {
+    "TAG": "Redes",
+    "TITLE": "Puedes encontrarme en",
+    "SUBTITLE": "las siguientes redes sociales, Conectemos!"
+  },
+  "CV": {
+    "TAG": "Currículum",
+    "TITLE": "Mi Trayectoria",
+    "DOWNLOAD": "Descargar CV",
+    "EXPERIENCE": "Experiencia Profesional",
+    "PRESENT": "Actualidad"
+  },
+  "FOOTER": { "RIGHTS": "Todos los derechos reservados" }
+}
