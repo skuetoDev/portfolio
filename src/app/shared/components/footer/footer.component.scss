@@ -1,0 +1,46 @@
+.footer {
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-lg) 0;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__brand {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+
+    .logo-symbol { color: var(--color-accent); }
+  }
+
+  &__links {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    justify-content: center;
+
+    a {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+
+      &:hover { color: var(--color-accent-light); }
+    }
+  }
+
+  &__copy {
+    font-size: 0.8rem;
+    color: var(--color-text-dim);
+  }
+}

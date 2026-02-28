@@ -1,1 +1,75 @@
-<p>navbar works!</p>
+<nav class="navbar" [class.scrolled]="isScrolled()">
+  <div class="container navbar__inner">
+
+    <!-- Logo -->
+    <a class="navbar__logo" routerLink="/" (click)="closeMenu()">
+      <span class="logo-symbol">&lt;</span>
+      <span class="logo-name">skueto</span>
+      <span class="logo-symbol">/&gt;</span>
+    </a>
+
+    <!-- Links desktop -->
+    <ul class="navbar__links">
+      @for (link of navLinks; track link.path) {
+        <li>
+            <a
+            [routerLink]="link.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+            class="navbar__link"
+          >
+            {{ link.labelKey | translate }}
+          </a>
+        </li>
+      }
+      
+    </ul>
+
+    <!-- Acciones -->
+    <div class="navbar__actions">
+      <!-- Selector de idioma -->
+      <div class="lang-switcher">
+        <button
+          class="lang-btn"
+          [class.active]="currentLang() === 'es'"
+          (click)="switchLang('es')"
+        >ES</button>
+        <span class="lang-divider">|</span>
+        <button
+          class="lang-btn"
+          [class.active]="currentLang() === 'en'"
+          (click)="switchLang('en')"
+        >EN</button>
+      </div>
+
+      <!-- Burger menu (mobile) -->
+      <button
+        class="burger"
+        [class.open]="isMenuOpen()"
+        (click)="toggleMenu()"
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menú mobile -->
+  <div class="navbar__mobile" [class.open]="isMenuOpen()">
+    <ul>
+      @for (link of navLinks; track link.path) {
+        <li>
+            <a
+            [routerLink]="link.path"
+            routerLinkActive="active"
+            (click)="closeMenu()"
+          >
+            {{ link.labelKey | translate }}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</nav>

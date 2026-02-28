@@ -1,1 +1,7 @@
-<p>section-title works!</p>
+<div class="section-title">
+   <span class="section-title__tag">{{ tag }}</span>
+   <h2 class="section-title__heading">{{ title }}</h2>
+   @if (subtitle) {
+      <p class="section-title__sub">{{ subtitle }}</p>
+   }
+</div>

@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Technology } from '../../../core/models/index';
 
 @Component({
   selector: 'app-tech-badge',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './tech-badge.component.html',
-  styleUrl: './tech-badge.component.scss'
+  styleUrls: ['./tech-badge.component.scss'],
 })
 export class TechBadgeComponent {
-
+  @Input() technology!: Technology;
 }

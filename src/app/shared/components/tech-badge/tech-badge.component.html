@@ -1,1 +1,10 @@
-<p>tech-badge works!</p>
+<span class="tech-badge" [title]="technology.name">
+      @if (technology.svgUrl) {
+        <img
+          [src]="technology.svgUrl"
+          [alt]="technology.name"
+          class="tech-badge__icon"
+        />
+      }
+      <span class="tech-badge__name">{{ technology.name }}</span>
+</span>

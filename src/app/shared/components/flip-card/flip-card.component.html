@@ -1,1 +1,15 @@
-<p>flip-card works!</p>
+<div class="flip-card" [class]="'flip-card--' + size">
+  <div class="flip-card__inner">
+
+    <div class="flip-card__front">
+      <img [src]="frontImage" [alt]="altText" />
+      <div class="flip-card__shine"></div>
+    </div>
+
+    <div class="flip-card__back">
+      <img [src]="backImage" [alt]="altText" />
+      <div class="flip-card__shine"></div>
+    </div>
+
+  </div>
+</div>

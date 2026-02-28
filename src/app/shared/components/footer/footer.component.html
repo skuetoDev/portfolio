@@ -1,1 +1,23 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="container footer__inner">
+
+    <div class="footer__brand">
+      <span class="logo-symbol">&lt;</span>
+      <span>skueto</span>
+      <span class="logo-symbol">/&gt;</span>
+    </div>
+
+    <nav class="footer__links">
+      <a routerLink="/">{{ 'NAV.HOME' | translate }}</a>
+      <a routerLink="/works">{{ 'NAV.WORKS' | translate }}</a>
+      <a routerLink="/contact">{{ 'NAV.CONTACT' | translate }}</a>
+      <a routerLink="/social">{{ 'NAV.SOCIAL' | translate }}</a>
+      <a routerLink="/cv">{{ 'NAV.CV' | translate }}</a>
+    </nav>
+
+    <p class="footer__copy">
+      © {{ currentYear }} skueto — {{ 'FOOTER.RIGHTS' | translate }}
+    </p>
+
+  </div>
+</footer>
