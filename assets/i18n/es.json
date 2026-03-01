@@ -1,7 +1,7 @@
 {
   "NAV": {
     "HOME": "Inicio",
-    "WORKS": "Trabajos",
+    "WORKS": "Proyectos",
     "CONTACT": "Contacto",
     "SOCIAL": "Redes",
     "CV": "Currículum"
@@ -10,22 +10,22 @@
     "GREETING": "Hola, soy",
     "SUBTITLE": "Desarrollador Full Stack",
     "BIO": "Mi nombre es Mario y soy un Apasionado por crear experiencias digitales únicas y funcionales con tecnologías modernas.",
-    "CTA_WORKS": "Ver mis trabajos",
+    "CTA_WORKS": "Ver mis Proyectos",
     "CTA_CONTACT": "Contáctame",
-    "PREVIEW_WORKS": "Explora todos mis proyectos ",
-    "PREVIEW_CV": "Mi experiencia y formación profesional",
-    "PREVIEW_SOCIAL": "Encuéntrame en las principales redes",
-    "PREVIEW_CONTACT": "¿Quieres hablar? Escribeme un mensaje",
+    "PREVIEW_WORKS": "Explora todos mis Proyectos ",
+    "PREVIEW_CV": "Mi Experiencia y Formación profesional",
+    "PREVIEW_SOCIAL": "Encuéntrame en las Principales Redes",
+    "PREVIEW_CONTACT": "¿Quieres hablar? Escribeme un Mensaje",
     "FEATURED_TAG": "Destacados",
-    "FEATURED_TITLE": "Últimos trabajos",
-    "SEE_ALL_WORKS": "Ver todos los trabajos"
+    "FEATURED_TITLE": "Últimos Proyectos",
+    "SEE_ALL_WORKS": "Ver todos los Proyectos"
   },
   "WORKS": {
     "TAG": "Portfolio",
-    "TITLE": "Mis Trabajos",
-    "SUBTITLE": "Proyectos desarrollados con pasión y tecnología",
+    "TITLE": "Mis Proyectos",
+    "SUBTITLE": "Desarrollados con Pasión y Tecnología",
     "FILTER_ALL": "Todos",
-    "EMPTY": "No hay trabajos disponibles"
+    "EMPTY": "No hay Proyectos Disponibles"
   },
   "CONTACT": {
     "TAG": "Contacto",

@@ -1,7 +1,7 @@
 {
   "NAV": {
     "HOME": "Home",
-    "WORKS": "Works",
+    "WORKS": "Projects",
     "CONTACT": "Contact",
     "SOCIAL": "Social",
     "CV": "CV"
@@ -10,7 +10,7 @@
     "GREETING": "Hello, I'm",
     "SUBTITLE": "Full Stack Developer",
     "BIO": "My name is Mario and I am passionate about creating unique and functional digital experiences with modern technologies.",
-    "CTA_WORKS": "View my works",
+    "CTA_WORKS": "View my Projects",
     "CTA_CONTACT": "Contact me",
     "PREVIEW_WORKS": "Explore all my projects ",
     "PREVIEW_CV": "My professional experience and education",
@@ -22,10 +22,10 @@
   },
   "WORKS": {
     "TAG": "Portfolio",
-    "TITLE": "My Works",
-    "SUBTITLE": "Projects developed with passion and modern technology",
+    "TITLE": "My Projects",
+    "SUBTITLE": "Developed with Passion and Modern Technology",
     "FILTER_ALL": "All",
-    "EMPTY": "No works available"
+    "EMPTY": "No Projects Available"
   },
   "CONTACT": {
     "TAG": "Contact",
