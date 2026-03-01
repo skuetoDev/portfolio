@@ -24,16 +24,6 @@ export class ManageSocialComponent implements OnInit {
   editingId = signal<string | null>(null);
   form!: FormGroup;
 
-  // Iconos predefinidos para redes conocidas
-  presetIcons = [
-    { name: 'GitHub', icon: 'github' },
-    { name: 'LinkedIn', icon: 'linkedin' },
-    { name: 'Twitter/X', icon: 'twitter' },
-    { name: 'Instagram', icon: 'instagram' },
-    { name: 'YouTube', icon: 'youtube' },
-    { name: 'Behance', icon: 'behance' },
-    { name: 'Dribbble', icon: 'dribbble' },
-  ];
 
   constructor(
     private socialService: SocialService,

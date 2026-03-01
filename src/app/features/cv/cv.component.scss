@@ -4,10 +4,49 @@
 
 }
 
-.cv-download {
+.cv-preview-wrap {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
   margin-bottom: var(--space-xl);
+}
+
+.cv-preview-frame {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 210 / 297; // proporción A4
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--color-border);
+  background: #fff;
+
+  &__iframe {
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border: none;
+    display: block;
+    pointer-events: none;
+  }
+
+  // Overlay transparente: convierte todo el frame en botón de descarga
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    background: transparent;
+    transition: background var(--transition-normal);
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
+.cv-preview-btn {
+  width: fit-content;
 }
 
 .experience {

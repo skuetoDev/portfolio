@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth.service';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -22,12 +23,17 @@ export class LoginComponent {
   loading = signal(false);
   error = signal('');
   showPass = signal(false);
+  heroBg: SafeStyle;
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
+    sanitizer: DomSanitizer,
   ) {
+     this.heroBg = sanitizer.bypassSecurityTrustStyle(
+       `linear-gradient(rgba(250,250,250,0.85), rgba(250,250,250,0.85)), url('./images/background.svg')`,
+     );
     // Si ya está autenticado, redirige directo al admin
     if (this.auth.isAuthenticated) {
       this.router.navigate(['/admin']);
@@ -37,7 +43,6 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
-    
   }
 
   get f() {
@@ -58,16 +63,16 @@ export class LoginComponent {
 
     this.auth.login(email, password).subscribe({
       next: (result) => {
-        console.log('✅ Login OK:', result.user.email);  // ← AÑADIDO
+        console.log('✅ Login OK:', result.user.email); // ← AÑADIDO
         this.loading.set(false);
         this.router.navigate(['/admin']);
       },
       error: (err) => {
-        console.log('❌ Error code:', err.code);         // ← AÑADIDO
-        console.log('❌ Error message:', err.message);   // ← AÑADIDO
+        console.log('❌ Error code:', err.code); // ← AÑADIDO
+        console.log('❌ Error message:', err.message); // ← AÑADIDO
         this.loading.set(false);
         this.error.set(this.getFirebaseError(err.code));
-      }
+      },
     });
   }
 
@@ -81,5 +86,4 @@ export class LoginComponent {
     };
     return errors[code] || 'Error al iniciar sesión. Inténtalo de nuevo';
   }
-  
 }

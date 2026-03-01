@@ -23,8 +23,6 @@ export class ManageWorksComponent implements OnInit {
   saving = signal(false);
   showForm = signal(false);
   editingId = signal<string | null>(null);
-  uploadProgress = signal<number>(0);
-  previewUrl = signal<string>('');
 
   form!: FormGroup;
 
@@ -56,7 +54,7 @@ export class ManageWorksComponent implements OnInit {
         [Validators.required, Validators.maxLength(500)],
       ],
       descEn: [work?.descriptionI18n?.['en'] || '', Validators.maxLength(500)],
-      mediaUrl: [work?.mediaUrl || ''],
+      mediaUrl: [work?.mediaUrl || '', Validators.required],
       mediaType: [work?.mediaType || 'image'],
       order: [work?.order ?? 0],
       visible: [work?.visible ?? true],
@@ -84,17 +82,15 @@ export class ManageWorksComponent implements OnInit {
     this.techs.removeAt(i);
   }
 
-  // ── Abrir formulario (nuevo o editar) ──────────────
+  // ── Abrir formulario ───────────────────────────────
   openNew(): void {
     this.editingId.set(null);
-    this.previewUrl.set('');
     this.initForm();
     this.showForm.set(true);
   }
 
   openEdit(work: Work): void {
     this.editingId.set(work.id!);
-    this.previewUrl.set(work.mediaUrl);
     this.initForm(work);
     this.showForm.set(true);
   }
@@ -103,40 +99,13 @@ export class ManageWorksComponent implements OnInit {
     this.showForm.set(false);
   }
 
-  // ── Subida de archivo ──────────────────────────────
-  async onFileChange(event: Event): Promise<void> {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (!file) return;
-
-    // Preview local inmediato
-    const reader = new FileReader();
-    reader.onload = (e) => this.previewUrl.set(e.target?.result as string);
-    reader.readAsDataURL(file);
-
-    // Determina tipo
-    const isVideo = file.type.startsWith('video/');
-    this.form.patchValue({ mediaType: isVideo ? 'video' : 'image' });
-
-    // Sube a Storage
-    this.saving.set(true);
-    try {
-      const tempId = this.editingId() || `temp_${Date.now()}`;
-      const url = await this.worksService.uploadMedia(
-        file,
-        tempId,
-        (progress) => this.uploadProgress.set(progress),
-      );
-      this.form.patchValue({ mediaUrl: url });
-      this.uploadProgress.set(0);
-    } catch (e) {
-      console.error('Error subiendo archivo', e);
-    } finally {
-      this.saving.set(false);
-    }
+  // ── Preview de la URL introducida ─────────────────
+  get previewUrl(): string {
+    return this.form?.get('mediaUrl')?.value || '';
   }
 
   // ── Guardar ────────────────────────────────────────
-  async onSubmit(): Promise<void> {
+  onSubmit(): void {
     if (this.form.invalid) return;
     this.saving.set(true);
 
@@ -172,7 +141,7 @@ export class ManageWorksComponent implements OnInit {
   // ── Eliminar ───────────────────────────────────────
   deleteWork(work: Work): void {
     if (!confirm(`¿Eliminar "${work.title}"?`)) return;
-    this.worksService.deleteWork(work.id!, work.mediaUrl).subscribe();
+    this.worksService.deleteWork(work.id!).subscribe();
   }
 
   // ── Toggle visibilidad ─────────────────────────────

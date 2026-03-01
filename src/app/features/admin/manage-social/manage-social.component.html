@@ -81,20 +81,7 @@
 
         <form [formGroup]="form" (ngSubmit)="onSubmit()" class="modal__body">
 
-          <!-- Presets rápidos -->
-          <div class="form-field">
-            <label>Selección rápida</label>
-            <div class="presets">
-              @for (preset of presetIcons; track preset.icon) {
-                <button type="button" class="preset-btn" (click)="selectPreset(preset)">
-                  <img [src]="'assets/icons/social/' + preset.icon + '.svg'"
-                       [alt]="preset.name"
-                       (error)="$any($event.target).style.display='none'" />
-                  {{ preset.name }}
-                </button>
-              }
-            </div>
-          </div>
+        
 
           <div class="form-row">
             <div class="form-field">

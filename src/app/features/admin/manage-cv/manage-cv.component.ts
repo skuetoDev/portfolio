@@ -39,19 +39,12 @@ export class ManageCvComponent implements OnInit {
   }
 
   // ── PDF ────────────────────────────────────────────
-  async onPdfChange(event: Event): Promise<void> {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (!file || file.type !== 'application/pdf') return;
-
-    this.saving.set(true);
-    try {
-      await this.cvService.uploadCvPdf(file, (p) => this.uploadProgress.set(p));
-      this.uploadProgress.set(0);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      this.saving.set(false);
-    }
+  updateCvUrl(): void {
+    const url = '/assets/cv/marioCV.pdf';
+    this.cvService.updateCvUrl(url).subscribe({
+      next: () => alert('✅ URL del CV actualizada'),
+      error: (e) => console.error(e),
+    });
   }
 
   // ── Experiencias ───────────────────────────────────
