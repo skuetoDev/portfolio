@@ -15,13 +15,12 @@
       <!-- Previsualización + botón descargar -->
       <div class="cv-preview-wrap">
       @if (googleDocsPreviewUrl()) {
-          <div class="cv-preview-frame">
-            <iframe
-              [src]="googleDocsPreviewUrl()! | safeUrl"
-              class="cv-preview-frame__iframe"
-              title="CV Preview"
-            ></iframe>
-          </div>
+          <iframe
+            [src]="googleDocsPreviewUrl()! | safeUrl"
+            class="cv-preview-frame__iframe"
+            title="CV Preview"
+          ></iframe>
+          
         }
         @if(p.cvFileUrl){
           <button class="btn-primary cv-preview-btn" (click)="downloadCv()">
