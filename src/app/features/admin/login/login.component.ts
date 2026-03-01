@@ -37,6 +37,7 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+    
   }
 
   get f() {
@@ -56,14 +57,17 @@ export class LoginComponent {
     const { email, password } = this.form.value;
 
     this.auth.login(email, password).subscribe({
-      next: () => {
+      next: (result) => {
+        console.log('✅ Login OK:', result.user.email);  // ← AÑADIDO
         this.loading.set(false);
         this.router.navigate(['/admin']);
       },
       error: (err) => {
+        console.log('❌ Error code:', err.code);         // ← AÑADIDO
+        console.log('❌ Error message:', err.message);   // ← AÑADIDO
         this.loading.set(false);
         this.error.set(this.getFirebaseError(err.code));
-      },
+      }
     });
   }
 
@@ -77,4 +81,5 @@ export class LoginComponent {
     };
     return errors[code] || 'Error al iniciar sesión. Inténtalo de nuevo';
   }
+  
 }

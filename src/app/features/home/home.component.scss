@@ -16,13 +16,6 @@
  
   padding: var(--space-xl) 0;
   padding-top: var(--navbar-height);
-  background-image:
-    linear-gradient(
-      rgb(250, 250, 250, 0.85),
-      rgba(250, 250, 250, 0.85)
-    ),
-    url('/images/background.svg');
-  
   &__inner {
     display: grid;
     grid-template-columns: 1fr auto;

@@ -30,7 +30,13 @@ export const appConfig: ApplicationConfig = {
     provideStorage(() => getStorage()),
 
     // i18n
-    provideTranslateService({ fallbackLang: 'es' }),
-    ...provideTranslateHttpLoader(),
+    provideTranslateService({
+      fallbackLang: 'es',
+      loader: provideTranslateHttpLoader({
+        // El punto './' es fundamental para que funcione en GitHub Pages
+        prefix: './assets/i18n/',
+        suffix: '.json',
+      }),
+    }),
   ],
 };

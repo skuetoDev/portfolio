@@ -1,12 +1,6 @@
 .works-page { 
   min-height: 100vh;
   margin-top: calc(-1 * var(--navbar-height)); 
-  background-image:
-    linear-gradient(
-      rgb(250, 250, 250, 0.85),
-      rgba(250, 250, 250, 0.85)
-    ),
-    url('/images/background.svg');
 }
 
 .works-filters {

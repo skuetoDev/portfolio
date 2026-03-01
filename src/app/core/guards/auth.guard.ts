@@ -1,8 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { Auth } from '@angular/fire/auth';
-import { authState } from '@angular/fire/auth';
-import { map, take } from 'rxjs/operators';
+import { Auth, authState } from '@angular/fire/auth';
+import { map, filter, take } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 
 export const authGuard: CanActivateFn = () => {
@@ -10,9 +9,9 @@ export const authGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   return authState(auth).pipe(
+    filter((user) => user !== undefined), // ← Espera a que Firebase responda
     take(1),
     map((user) => {
-      // Verifica que esté autenticado Y que sea el email admin
       const isAdmin = !!user && user.email === environment.adminEmail;
 
       if (isAdmin) return true;

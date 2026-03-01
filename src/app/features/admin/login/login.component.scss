@@ -5,13 +5,7 @@
   justify-content: center;
   background: var(--color-bg);
   padding: var(--space-md);
-   margin-top: calc(-1 * var(--navbar-height)); 
-  background-image:
-    linear-gradient(
-      rgb(250, 250, 250, 0.85),
-      rgba(250, 250, 250, 0.85)
-    ),
-    url('/images/background.svg');
+  margin-top: calc(-1 * var(--navbar-height)); 
 
   // Fondo con gradiente sutil
  

@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   Auth,
@@ -15,13 +15,13 @@ import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private auth = inject(Auth);
+  private router = inject(Router);
+
   currentUser = signal<User | null>(null);
   isLoading = signal(true);
 
-  constructor(
-    private auth: Auth,
-    private router: Router,
-  ) {
+  constructor() {
     // Escucha cambios de sesión en tiempo real
     user(this.auth).subscribe((u) => {
       this.currentUser.set(u);

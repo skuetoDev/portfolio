@@ -26,10 +26,14 @@ export class HomeComponent implements OnInit {
   featuredWorks = signal<Work[]>([]);
 
   // Flip Card
-  frontImage = '/images/flip-Card/Foto_CV.webp';
-  backImage = '/images/flip-Card/skuetoDev.webp';
+  frontImage = './images/flip-Card/Foto_CV.webp';
+  backImage = './images/flip-Card/skuetoDev.webp';
 
-  constructor(private worksService: WorksService) {}
+ 
+
+  constructor(private worksService: WorksService) {
+
+  }
 
   ngOnInit(): void {
     this.worksService.getWorks().subscribe((works) => {
