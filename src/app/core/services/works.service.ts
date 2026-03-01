@@ -35,23 +35,24 @@ export class WorksService {
   }
 
   addWork(work: Omit<Work, 'id'>): Observable<any> {
-    const ref = collection(this.firestore, this.COLLECTION);
-    return from(
-      addDoc(ref, {
-        ...work,
-        createdAt: Timestamp.now(),
-      }),
-    );
+    return runInInjectionContext(this.injector, () => {
+      const ref = collection(this.firestore, this.COLLECTION);
+      return from(addDoc(ref, { ...work, createdAt: Timestamp.now() }));
+    });
   }
 
   updateWork(id: string, data: Partial<Work>): Observable<void> {
-    const docRef = doc(this.firestore, this.COLLECTION, id);
-    return from(updateDoc(docRef, { ...data }));
+    return runInInjectionContext(this.injector, () => {
+      const docRef = doc(this.firestore, this.COLLECTION, id);
+      return from(updateDoc(docRef, { ...data }));
+    });
   }
 
   deleteWork(id: string): Observable<void> {
-    const docRef = doc(this.firestore, this.COLLECTION, id);
-    return from(deleteDoc(docRef));
+    return runInInjectionContext(this.injector, () => {
+      const docRef = doc(this.firestore, this.COLLECTION, id);
+      return from(deleteDoc(docRef));
+    });
   }
 
   private mapWork(data: any): Work {
@@ -66,6 +67,7 @@ export class WorksService {
       order: data['order'] || 0,
       visible: data['visible'] ?? true,
       createdAt: data['createdAt']?.toDate?.() || new Date(),
+      repoUrl: data['repoUrl'] || '',
     };
   }
 }

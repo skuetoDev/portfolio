@@ -5,15 +5,15 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormArray,
 } from '@angular/forms';
+import { SvgIconComponent } from '../../../shared/components/svg-icon/svg-icon.component';
 import { WorksService } from '../../../core/services/works.service';
-import { Work, Technology } from '../../../core/models';
+import { Work } from '../../../core/models';
 
 @Component({
   selector: 'app-manage-works',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, SvgIconComponent],
   templateUrl: './manage-works.component.html',
   styleUrls: ['./manage-works.component.scss'],
 })
@@ -25,6 +25,13 @@ export class ManageWorksComponent implements OnInit {
   editingId = signal<string | null>(null);
 
   form!: FormGroup;
+  selectedTechs = signal<string[]>([]);
+
+  // Iconos disponibles en public/icons/technologies/
+  readonly techIcons = [
+    'angular', 'css', 'docker', 'html5', 'java', 'javascript',
+    'laravel', 'mariadb', 'mongodb', 'nodejs', 'php', 'scss', 'wordpress',
+  ];
 
   constructor(
     private worksService: WorksService,
@@ -44,11 +51,14 @@ export class ManageWorksComponent implements OnInit {
   }
 
   private initForm(work?: Work): void {
+    // Restaurar selección desde svgUrl guardado
+    const selected = (work?.technologies || [])
+      .map((t) => t.svgUrl?.split('/').pop()?.replace('.svg', '') ?? t.name.toLowerCase())
+      .filter((name) => this.techIcons.includes(name));
+    this.selectedTechs.set(selected);
+
     this.form = this.fb.group({
-      title: [
-        work?.title || '',
-        [Validators.required, Validators.maxLength(100)],
-      ],
+      title: [work?.title || '', [Validators.required, Validators.maxLength(100)]],
       descEs: [
         work?.descriptionI18n?.['es'] || '',
         [Validators.required, Validators.maxLength(500)],
@@ -56,30 +66,23 @@ export class ManageWorksComponent implements OnInit {
       descEn: [work?.descriptionI18n?.['en'] || '', Validators.maxLength(500)],
       mediaUrl: [work?.mediaUrl || '', Validators.required],
       mediaType: [work?.mediaType || 'image'],
+      repoUrl: [work?.repoUrl || ''],
       order: [work?.order ?? 0],
       visible: [work?.visible ?? true],
-      technologies: this.fb.array(
-        (work?.technologies || []).map((t) => this.createTechGroup(t)),
-      ),
     });
   }
 
-  private createTechGroup(tech?: Technology): FormGroup {
-    return this.fb.group({
-      name: [tech?.name || '', Validators.required],
-      svgUrl: [tech?.svgUrl || ''],
-    });
+  toggleTech(name: string): void {
+    const current = this.selectedTechs();
+    if (current.includes(name)) {
+      this.selectedTechs.set(current.filter((t) => t !== name));
+    } else {
+      this.selectedTechs.set([...current, name]);
+    }
   }
 
-  get techs(): FormArray {
-    return this.form.get('technologies') as FormArray;
-  }
-
-  addTech(): void {
-    this.techs.push(this.createTechGroup());
-  }
-  removeTech(i: number): void {
-    this.techs.removeAt(i);
+  isTechSelected(name: string): boolean {
+    return this.selectedTechs().includes(name);
   }
 
   // ── Abrir formulario ───────────────────────────────
@@ -99,7 +102,6 @@ export class ManageWorksComponent implements OnInit {
     this.showForm.set(false);
   }
 
-  // ── Preview de la URL introducida ─────────────────
   get previewUrl(): string {
     return this.form?.get('mediaUrl')?.value || '';
   }
@@ -116,7 +118,11 @@ export class ManageWorksComponent implements OnInit {
       descriptionI18n: { es: val.descEs, en: val.descEn || val.descEs },
       mediaUrl: val.mediaUrl,
       mediaType: val.mediaType,
-      technologies: val.technologies,
+      repoUrl: val.repoUrl || '',
+      technologies: this.selectedTechs().map((name) => ({
+        name: name.charAt(0).toUpperCase() + name.slice(1),
+        svgUrl: `icons/technologies/${name}.svg`,
+      })),
       order: val.order,
       visible: val.visible,
     };

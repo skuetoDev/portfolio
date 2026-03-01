@@ -68,8 +68,8 @@
 
   <!-- Modal -->
   @if (showForm()) {
-    <div class="modal-backdrop" (click)="closeForm()">
-      <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-backdrop">
+      <div class="modal">
 
         <div class="modal__header">
           <h2>{{ editingId() ? 'Editar red' : 'Nueva red social' }}</h2>

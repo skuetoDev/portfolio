@@ -1,26 +1,25 @@
 .tech-badge {
-   display: inline-flex;
-   align-items: center;
-   gap: 4px;
-   padding: 3px 10px;
-   background: var(--color-surface-alt);
-   border: 1px solid var(--color-border);
-   border-radius: var(--radius-xl);
-   font-size: 0.75rem;
-   font-weight: 500;
-   color: var(--color-text-muted);
-   transition: all var(--transition-fast);
-   white-space: nowrap;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 8px;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 0.65rem;
+  font-weight: 500;
+  white-space: nowrap;
+  width: 72px;
+  transition: all var(--transition-fast);
 
-   &:hover {
-      border-color: var(--color-accent);
-      color: var(--color-accent-light);
-      background: var(--color-accent-glow);
-   }
+  &:hover {
+    border-color: var(--golden-color);
+    color: var(--color-text);
+  }
 
-   &__icon {
-      width: 14px;
-      height: 14px;
-      object-fit: contain;
-   }
+  &__icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
 }

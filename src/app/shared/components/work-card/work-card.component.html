@@ -1,4 +1,4 @@
-<article class="work-card">
+<article class="work-card" (click)="openModal()">
 
   <!-- Media -->
   <div class="work-card__media">
@@ -11,7 +11,7 @@
       <img [src]="work.mediaUrl | safeUrl" [alt]="work.title" loading="lazy" />
     }
     <div class="work-card__overlay">
-      <span class="work-card__view-label">Ver proyecto</span>
+      <span class="work-card__view-label">{{ 'WORKS.WORK_DETAIL.SHOW_PROYECT' | translate }}</span>
     </div>
   </div>
 
@@ -23,9 +23,54 @@
     <!-- Tecnologías -->
     <div class="work-card__techs">
       @for (tech of work.technologies; track tech.name) {
-        <app-tech-badge [technology]="tech" />
+        <app-tech-badge class="icon-option" [technology]="tech" />
       }
     </div>
   </div>
 
 </article>
+
+<!-- Modal de detalle -->
+@if (isModalOpen()) {
+  <div class="work-detail-backdrop">
+    <div class="work-detail">
+
+      <div class="work-detail__header">
+        <h2 class="work-detail__title">{{ work.title }}</h2>
+        <button class="work-detail__close" (click)="closeModal()">✕</button>
+      </div>
+
+      <div class="work-detail__scroll">
+        <div class="work-detail__media">
+          @if (work.mediaType === 'video') {
+            <video [src]="work.mediaUrl | safeUrl" controls autoplay muted loop playsinline></video>
+          } @else {
+            <img [src]="work.mediaUrl | safeUrl" [alt]="work.title" />
+          }
+        </div>
+
+        <div class="work-detail__body">
+          <p class="work-detail__desc">{{ description }}</p>
+          <h2 class="work-detail__subtitle">{{ 'WORKS.WORK_DETAIL.TECHNOLOGIES' | translate }}</h2>
+
+          @if (work.technologies.length) {
+            <div class="tech-grid">
+              @for (tech of work.technologies; track tech.name) {
+                <app-tech-badge class="icon-option" [technology]="tech" />
+              }
+            </div>
+          }
+
+          @if (work.repoUrl) {
+            <a [href]="work.repoUrl" target="_blank" rel="noopener noreferrer"
+               class="work-detail__repo">
+              <app-svg-icon src="icons/github.svg" />
+              {{ 'WORKS.WORK_DETAIL.REPO' | translate }}
+            </a>
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+}

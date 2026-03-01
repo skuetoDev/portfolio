@@ -117,13 +117,15 @@
   }
 
   &__error {
-    font-size: 0.78rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    height: 20px;
     color: #ff6b6b;
     display: flex;
     align-items: center;
     gap: 4px;
 
-    &::before { content: '⚠ '; }
+    &::before { content: ''; }
   }
 }
 

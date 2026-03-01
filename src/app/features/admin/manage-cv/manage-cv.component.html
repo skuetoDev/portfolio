@@ -102,8 +102,8 @@
 
   <!-- Modal experiencia -->
   @if (showExpForm()) {
-    <div class="modal-backdrop" (click)="closeExpForm()">
-      <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-backdrop">
+      <div class="modal">
 
         <div class="modal__header">
           <h2>{{ editingExpIdx() !== null ? 'Editar experiencia' : 'Nueva experiencia' }}</h2>

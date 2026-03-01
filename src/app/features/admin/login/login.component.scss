@@ -135,7 +135,7 @@
 .btn-login {
   width: 100%;
   padding: 0.875rem;
-  background: var(--color-accent);
+  background: var(--golden-color);
   color: white;
   border-radius: var(--radius-sm);
   font-weight: 700;
@@ -147,11 +147,11 @@
   justify-content: center;
   gap: var(--space-sm);
   margin-top: var(--space-md);
-  box-shadow: var(--shadow-accent);
-
+  
   &:hover:not(:disabled) {
-    background: var(--color-accent-light);
+    background: var(--blue-color);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-accent);
   }
 
   &:disabled {

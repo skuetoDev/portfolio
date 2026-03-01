@@ -16,6 +16,7 @@ import { CvProfile, Experience } from '../../core/models';
 export class CvComponent implements OnInit {
   profile = signal<CvProfile | null>(null);
   loading = signal(true);
+  currentLang = signal('es');
 
   // Google Docs Viewer funciona en móvil (Chrome Android no renderiza PDFs en iframes nativamente)
   googleDocsPreviewUrl = computed<string | null>(() => {
@@ -29,8 +30,10 @@ export class CvComponent implements OnInit {
 
   constructor(
     private cvService: CvService,
-    private translate: TranslateService,
-  ) {}
+    translate: TranslateService,
+  ) {
+    translate.onLangChange.subscribe(({ lang }) => this.currentLang.set(lang));
+  }
 
   ngOnInit(): void {
     this.cvService.getProfile().subscribe((profile) => {
@@ -40,13 +43,11 @@ export class CvComponent implements OnInit {
   }
 
   getRole(exp: Experience): string {
-    const lang = this.translate.currentLang || 'es';
-    return exp.roleI18n?.[lang] || exp.role;
+    return exp.roleI18n?.[this.currentLang()] || exp.role;
   }
 
   getDescription(exp: Experience): string {
-    const lang = this.translate.currentLang || 'es';
-    return exp.descriptionI18n?.[lang] || '';
+    return exp.descriptionI18n?.[this.currentLang()] || '';
   }
 
   downloadCv(): void {

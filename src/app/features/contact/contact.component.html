@@ -70,9 +70,11 @@
             [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate"
             autocomplete="name"
           />
-          @if (getError('name'); as err) {
-            <span class="form-field__error">{{ err }}</span>
-          }
+          <span class="form-field__error">
+            @if (getError('name'); as err) {
+               ⚠ {{ err }}
+            }
+          </span>
         </div>
 
         <!-- Email -->
@@ -85,9 +87,11 @@
             [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate"
             autocomplete="email"
           />
-          @if (getError('email'); as err) {
-            <span class="form-field__error">{{ err }}</span>
-          }
+          <span class="form-field__error">
+            @if (getError('email'); as err) {
+               ⚠ {{ err }}
+            }
+          </span>
         </div>
 
         <!-- Asunto -->
@@ -99,9 +103,11 @@
             formControlName="subject"
             [placeholder]="'CONTACT.SUBJECT_PLACEHOLDER' | translate"
           />
-          @if (getError('subject'); as err) {
-            <span class="form-field__error">{{ err }}</span>
-          }
+          <span class="form-field__error">
+            @if (getError('subject'); as err) {
+               ⚠ {{ err }}
+            }
+          </span>
         </div>
 
         <!-- Mensaje -->
@@ -116,9 +122,11 @@
             rows="6"
             [placeholder]="'CONTACT.MESSAGE_PLACEHOLDER' | translate"
           ></textarea>
-          @if (getError('message'); as err) {
-            <span class="form-field__error">{{ err }}</span>
-          }
+          <span class="form-field__error">
+            @if (getError('message'); as err) {
+               ⚠ {{ err }} 
+            }
+          </span>
         </div>
 
         <!-- Submit -->

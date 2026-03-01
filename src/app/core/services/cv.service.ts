@@ -26,29 +26,19 @@ export class CvService {
   }
 
   updateExperiences(experiences: Experience[]): Observable<void> {
-    const docRef = doc(this.firestore, this.DOC_PATH);
-    return from(
-      updateDoc(docRef, {
-        experiences,
-        lastUpdated: Timestamp.now(),
-      }),
-    );
+    return runInInjectionContext(this.injector, () => {
+      const docRef = doc(this.firestore, this.DOC_PATH);
+      return from(updateDoc(docRef, { experiences, lastUpdated: Timestamp.now() }));
+    });
   }
 
   // ── El CV PDF está en el repo: public/assets/cv/curriculum.pdf ──
   // Esta función solo actualiza la URL en Firestore
   updateCvUrl(url: string): Observable<void> {
-    const docRef = doc(this.firestore, this.DOC_PATH);
-    return from(
-      setDoc(
-        docRef,
-        {
-          cvFileUrl: url,
-          lastUpdated: Timestamp.now(),
-        },
-        { merge: true },
-      ),
-    );
+    return runInInjectionContext(this.injector, () => {
+      const docRef = doc(this.firestore, this.DOC_PATH);
+      return from(setDoc(docRef, { cvFileUrl: url, lastUpdated: Timestamp.now() }, { merge: true }));
+    });
   }
 
   private mapProfile(data: any): CvProfile {

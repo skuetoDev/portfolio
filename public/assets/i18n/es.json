@@ -25,7 +25,12 @@
     "TITLE": "Mis Proyectos",
     "SUBTITLE": "Desarrollados con Pasión y Tecnología",
     "FILTER_ALL": "Todos",
-    "EMPTY": "No hay Proyectos Disponibles"
+    "EMPTY": "No hay Proyectos Disponibles",
+    "WORK_DETAIL": {
+      "SHOW_PROYECT": "Ver Proyecto",
+      "TECHNOLOGIES": "Tecnologías",
+      "REPO": "Ver Repositorio"
+    }
   },
   "CONTACT": {
     "TAG": "Contacto",

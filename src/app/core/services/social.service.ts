@@ -34,20 +34,26 @@ export class SocialService {
 
   // ── Añadir red ─────────────────────────────────────
   addNetwork(network: Omit<SocialNetwork, 'id'>): Observable<any> {
-    const ref = collection(this.firestore, this.COLLECTION);
-    return from(addDoc(ref, network));
+    return runInInjectionContext(this.injector, () => {
+      const ref = collection(this.firestore, this.COLLECTION);
+      return from(addDoc(ref, network));
+    });
   }
 
   // ── Actualizar red ─────────────────────────────────
   updateNetwork(id: string, data: Partial<SocialNetwork>): Observable<void> {
-    const docRef = doc(this.firestore, this.COLLECTION, id);
-    return from(updateDoc(docRef, { ...data }));
+    return runInInjectionContext(this.injector, () => {
+      const docRef = doc(this.firestore, this.COLLECTION, id);
+      return from(updateDoc(docRef, { ...data }));
+    });
   }
 
   // ── Eliminar red ───────────────────────────────────
   deleteNetwork(id: string): Observable<void> {
-    const docRef = doc(this.firestore, this.COLLECTION, id);
-    return from(deleteDoc(docRef));
+    return runInInjectionContext(this.injector, () => {
+      const docRef = doc(this.firestore, this.COLLECTION, id);
+      return from(deleteDoc(docRef));
+    });
   }
 
   // ── Toggle visibilidad ─────────────────────────────

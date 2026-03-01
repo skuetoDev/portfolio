@@ -8,6 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ContactService } from '../../core/services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -30,6 +31,7 @@ export class ContactComponent {
   constructor(
     private fb: FormBuilder,
     private translate: TranslateService,
+    private contactService: ContactService,
   ) {
     this.form = this.fb.group({
       name: [
@@ -102,16 +104,16 @@ export class ContactComponent {
 
     this.sending.set(true);
 
-    // 💡 Aquí integrarías EmailJS, Formspree, o similar
-    // Por ahora simulamos un envío
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    this.success.set(true);
-    this.sending.set(false);
-    this.form.reset();
-    this.submitted.set(false);
-
-    // Oculta el mensaje de éxito tras 5 segundos
-    setTimeout(() => this.success.set(false), 5000);
+    try {
+      await this.contactService.send(this.form.value);
+      this.success.set(true);
+      this.form.reset();
+      this.submitted.set(false);
+      setTimeout(() => this.success.set(false), 5000);
+    } catch {
+      // error de red — el envío no llegó
+    } finally {
+      this.sending.set(false);
+    }
   }
 }

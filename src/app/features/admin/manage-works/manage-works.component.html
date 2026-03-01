@@ -21,7 +21,7 @@
       @for (work of works(); track work.id) {
         <div class="work-row" [class.hidden]="!work.visible">
 
-          <div class="work-row__media">
+          <div class="work-row__thumb">
             @if (work.mediaType === 'video') {
               <video [src]="work.mediaUrl" muted></video>
             } @else {
@@ -31,7 +31,7 @@
           </div>
 
           <div class="work-row__info">
-            <strong>{{ work.title }}</strong>
+            <h3>{{ work.title }}</h3>
             <span class="work-order">Orden: {{ work.order }}</span>
           </div>
 
@@ -69,8 +69,8 @@
 
   <!-- Modal -->
   @if (showForm()) {
-    <div class="modal-backdrop" (click)="closeForm()">
-      <div class="modal modal--wide" (click)="$event.stopPropagation()">
+    <div class="modal-backdrop">
+      <div class="modal modal--wide">
 
         <div class="modal__header">
           <h2>{{ editingId() ? 'Editar Proyecto' : 'Nuevo Proyecto' }}</h2>
@@ -122,6 +122,12 @@
             </div>
           </div>
 
+          <div class="form-field">
+            <label>URL del repositorio (GitHub)</label>
+            <input type="url" formControlName="repoUrl"
+                   placeholder="https://github.com/usuario/repo" />
+          </div>
+
           <div class="form-row form-row--small">
             <div class="form-field">
               <label>Orden</label>
@@ -137,22 +143,19 @@
 
           <!-- Tecnologías -->
           <div class="form-section">
-            <div class="form-section__header">
-              <label>Tecnologías</label>
-              <button type="button" class="btn-secondary btn-sm" (click)="addTech()">+ Añadir</button>
-            </div>
-
-            <div formArrayName="technologies" class="tech-list">
-              @for (tech of techs.controls; track $index) {
-                <div [formGroupName]="$index" class="tech-row">
-                  <input type="text" formControlName="name" placeholder="Nombre (ej: Angular)" />
-                  <input type="url" formControlName="svgUrl" placeholder="URL del SVG" />
-                  <button type="button" class="action-btn action-btn--danger" (click)="removeTech($index)">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                    </svg>
-                  </button>
-                </div>
+            <label class="form-label">Tecnologías</label>
+            <div class="tech-grid">
+              @for (icon of techIcons; track icon) {
+                <button
+                  type="button"
+                  class="icon-option"
+                  [class.icon-option--selected]="isTechSelected(icon)"
+                  [title]="icon"
+                  (click)="toggleTech(icon)"
+                >
+                  <app-svg-icon [src]="'icons/technologies/' + icon + '.svg'" />
+                  <span>{{ icon }}</span>
+                </button>
               }
             </div>
           </div>

@@ -31,17 +31,18 @@
       transition: transform var(--transition-slow);
     }
   }
-
+  
   &__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(108, 99, 255, 0.6);
+    background-image:none;
     backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     transition: opacity var(--transition-normal);
+    cursor: pointer;
   }
 
   &__view-label {
@@ -80,10 +81,179 @@
   }
 
   &__techs {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
     gap: var(--space-xs);
     margin-top: auto;
     padding-top: var(--space-sm);
   }
+}
+
+// ── Modal de detalle ──────────────────────────────────
+.work-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  animation: fadeIn 0.2s ease;
+}
+
+.work-detail {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.25s ease;
+
+  &__scroll {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md)  var(--space-md)  var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    flex-shrink: 0;
+  }
+  
+
+  &__title {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  &__subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  &__close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: var(--color-surface-alt);
+      color: var(--color-text);
+    }
+  }
+
+  &__media {
+    aspect-ratio: 16 / 9;
+    background: var(--color-bg);
+    overflow: hidden;
+
+    img, video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  &__techs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: var(--space-xs);
+  }
+
+  &__repo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    width: fit-content;
+    transition: all var(--transition-fast);
+
+    app-svg-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--color-text);
+    }
+
+    &:hover {
+      color: white;
+      background: var(--blue-color-glow);
+
+      app-svg-icon { color: var(--color-accent-light); }
+    }
+  }
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: var(--space-sm);
+}
+
+.icon-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--color-text-muted);
+
+  app-svg-icon { width: 28px; height: 28px; }
+  span { font-size: 0.65rem; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; }
+
+  &:hover { border-color: var(--golden-color); color: var(--color-text); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

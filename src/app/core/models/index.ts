@@ -10,6 +10,7 @@ export interface Work {
   order: number;
   visible: boolean;
   createdAt: Date;
+  repoUrl?: string;
 }
 
 // === TECNOLOGÍA ===
