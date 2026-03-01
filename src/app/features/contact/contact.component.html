@@ -52,13 +52,6 @@
       <!-- Formulario -->
       <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
-        <!-- Mensaje de éxito -->
-        @if (success()) {
-          <div class="form-success">
-            <span>✅</span>
-            <p>{{ 'CONTACT.SUCCESS' | translate }}</p>
-          </div>
-        }
 
         <!-- Nombre -->
         <div class="form-field" [class.error]="getError('name')">
@@ -131,6 +124,12 @@
 
         <!-- Submit -->
         <div class="form-actions">
+          <div class="form-success">
+            @if (success()) {
+              <span>✅</span>
+              <p>{{ 'CONTACT.SUCCESS' | translate }}</p>
+            }
+          </div>
           <button
             type="submit"
             class="btn-primary"
@@ -145,6 +144,7 @@
                    stroke="currentColor" stroke-width="2.5">
                 <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
               </svg>
+              <!-- Mensaje de éxito -->
             }
           </button>
         </div>

@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
- 
+
   padding: var(--space-xl) 0;
   padding-top: var(--navbar-height);
   &__inner {
@@ -56,6 +56,12 @@
   .glow-text {
     text-shadow: 0 0 40px var(--blue-color-glow);
     font-size: clamp(10.5rem, 10vw, 18rem);
+
+    @media (max-width: 900px) {
+      font-size: clamp(3.5rem, 15vw, 6rem);
+      text-shadow: 0 0 40px var(--blue-color);
+
+    }
   }
 
   &__subtitle {
@@ -91,11 +97,16 @@
   &__avatar {
     position: relative;
     animation: fadeInUp 0.8s 0.2s ease both;
+    
 
     @media (max-width: 900px) {
+      top:var(--space-lg);
       display: flex;
       justify-content: center;
+      justify-self: center;
       order: -1;
+      width: 220px;
+      height: 220px;
 
       // Tamaño más pequeño en móvil
       ::ng-deep .flip-card--lg {
@@ -132,21 +143,29 @@
       display: block;
       width: 3px;
       height: 40px;
-      background: linear-gradient(
-        to bottom,
-        var(--blue-color),
-        transparent
-      );
+      background: linear-gradient(to bottom, var(--blue-color), transparent);
       animation: scrollLine 1.5s ease infinite;
     }
   }
 }
 
 @keyframes scrollLine {
-  0%   { transform: scaleY(0); transform-origin: top; }
-  50%  { transform: scaleY(1); transform-origin: top; }
-  51%  { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
 }
 
 // ========================
@@ -231,7 +250,7 @@
   &__arrow {
     font-size: 1.5rem;
     color: var(--blue-color);
-    
+
     transition: all var(--transition-normal);
   }
 }

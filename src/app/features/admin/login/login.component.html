@@ -9,7 +9,7 @@
         <span class="logo-name">Skueto</span>
         <span class="logo-symbol">Dev/&gt;</span>
       </div>
-      <h1>Área de administración</h1>
+      <h1>Área de Administración</h1>
       <p>Acceso restringido</p>
     </div>
 
@@ -17,11 +17,11 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
       <!-- Error global -->
-      @if (error()) {
-        <div class="form-error-banner">
+      <div class="form-error-banner">
+          @if (error()) {
           <span>⚠</span> {{ error() }}
+        }
         </div>
-      }
 
       <!-- Email -->
       <div class="form-field" [class.invalid]="f['email'].invalid && f['email'].touched">
@@ -39,9 +39,11 @@
             autocomplete="email"
           />
         </div>
-        @if (f['email'].invalid && f['email'].touched) {
-          <span class="field-error">Email no válido</span>
-        }
+        <span class="field-error">
+          @if (f['email'].invalid && f['email'].touched) {
+            Email no válido
+          }
+          </span>
       </div>
 
       <!-- Contraseña -->
@@ -74,9 +76,11 @@
             }
           </button>
         </div>
-        @if (f['password'].invalid && f['password'].touched) {
-          <span class="field-error">Mínimo 6 caracteres</span>
-        }
+        <span class="field-error">
+            @if (f['password'].invalid && f['password'].touched) {
+              Mínimo 6 caracteres
+            }
+          </span>
       </div>
 
       <!-- Submit -->

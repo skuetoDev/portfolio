@@ -54,9 +54,6 @@
   align-items: center;
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
-  background: rgba(255, 107, 107, 0.1);
-  border: 1px solid rgba(255, 107, 107, 0.3);
-  border-radius: var(--radius-sm);
   color: #ff6b6b;
   font-size: 0.875rem;
   margin-bottom: var(--space-md);
@@ -128,8 +125,10 @@
 }
 
 .field-error {
-  font-size: 0.78rem;
+  font-size: 0.88rem;
+  font-weight: 600;
   color: #ff6b6b;
+  height: 20px;
 }
 
 .btn-login {
