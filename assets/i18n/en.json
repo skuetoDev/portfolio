@@ -25,7 +25,12 @@
     "TITLE": "My Projects",
     "SUBTITLE": "Developed with Passion and Modern Technology",
     "FILTER_ALL": "All",
-    "EMPTY": "No Projects Available"
+    "EMPTY": "No Projects Available",
+    "WORK_DETAIL": {
+      "SHOW_PROYECT": "View Project",
+      "TECHNOLOGIES": "Technologies",
+      "REPO": "View Repository"
+    }
   },
   "CONTACT": {
     "TAG": "Contact",
