@@ -32,7 +32,7 @@
           routerLinkActive="active"
           class="sidebar__link"
         >
-          <span class="sidebar__link-icon-menu" [innerHTML]="item.icon"></span>
+          <span class="sidebar__link-icon-menu" [innerHTML]="item.icon | safeHtml"></span>
           <span class="sidebar__link-label">{{ item.label }}</span>
         </a>
       }
@@ -65,7 +65,7 @@
   </aside>
 
   <!-- Contenido principal -->
-  <main class="admin-main"  [style.background-image]="heroBg">
+  <main class="admin-main"  [style.background-image]="heroBg | safeStyle">
     <router-outlet />
   </main>
 

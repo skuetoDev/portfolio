@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, inject, runInInjectionContext } from '@angular/core';
 import {
   Firestore,
   collection,
@@ -17,16 +17,21 @@ import { Work } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class WorksService {
+  private firestore = inject(Firestore);
+  private injector = inject(Injector);
+
   private readonly COLLECTION = 'works';
 
-  constructor(private firestore: Firestore) {}
+  constructor() {}
 
   getWorks(): Observable<Work[]> {
-    const ref = collection(this.firestore, this.COLLECTION);
-    const q = query(ref, orderBy('order', 'asc'));
-    return collectionData(q, { idField: 'id' }).pipe(
-      map((docs) => docs.map((d) => this.mapWork(d))),
-    );
+    return runInInjectionContext(this.injector, () => {
+      const ref = collection(this.firestore, this.COLLECTION);
+      const q = query(ref, orderBy('order', 'asc'));
+      return collectionData(q, { idField: 'id' }).pipe(
+        map((docs) => docs.map((d) => this.mapWork(d))),
+      );
+    });
   }
 
   addWork(work: Omit<Work, 'id'>): Observable<any> {

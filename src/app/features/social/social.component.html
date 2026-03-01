@@ -21,10 +21,7 @@
             class="social-card"
           >
             <div class="social-card__icon">
-              <img
-                [src]="'/icons/social/' + network.icon + '.svg'"
-                [alt]="network.name"
-              />
+              <app-svg-icon [src]="'icons/' + network.name.toLowerCase() + '.svg'" />
             </div>
             <span class="social-card__name">{{ network.name }}</span>
             <span class="social-card__arrow">↗</span>

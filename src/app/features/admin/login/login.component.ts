@@ -9,12 +9,12 @@ import {
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth.service';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { SafeStylePipe } from '../../../shared/pipes/safe-style.pipe';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule, SafeStylePipe],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -23,17 +23,13 @@ export class LoginComponent {
   loading = signal(false);
   error = signal('');
   showPass = signal(false);
-  heroBg: SafeStyle;
+  heroBg = `linear-gradient(rgba(250,250,250,0.85), rgba(250,250,250,0.85)), url('./images/background.svg')`;
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    sanitizer: DomSanitizer,
   ) {
-     this.heroBg = sanitizer.bypassSecurityTrustStyle(
-       `linear-gradient(rgba(250,250,250,0.85), rgba(250,250,250,0.85)), url('./images/background.svg')`,
-     );
     // Si ya está autenticado, redirige directo al admin
     if (this.auth.isAuthenticated) {
       this.router.navigate(['/admin']);

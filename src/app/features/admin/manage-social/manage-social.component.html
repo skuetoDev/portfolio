@@ -22,10 +22,7 @@
         <div class="network-row" [class.hidden]="!network.visible">
 
           <div class="network-row__icon">
-            <img [src]="'assets/icons/social/' + network.icon + '.svg'"
-                 [alt]="network.name"
-                 (error)="$any($event.target).style.display='none'" />
-            <span>{{ network.name.charAt(0) }}</span>
+            <app-svg-icon [src]="'icons/' + network.name.toLowerCase() + '.svg'" />
           </div>
 
           <div class="network-row__info">
@@ -87,10 +84,6 @@
             <div class="form-field">
               <label>Nombre *</label>
               <input type="text" formControlName="name" placeholder="GitHub" />
-            </div>
-            <div class="form-field">
-              <label>Icono (nombre SVG) *</label>
-              <input type="text" formControlName="icon" placeholder="github" />
             </div>
           </div>
 

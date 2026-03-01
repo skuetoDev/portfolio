@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, inject, runInInjectionContext } from '@angular/core';
 import {
   Firestore,
   collection,
@@ -16,18 +16,20 @@ import { SocialNetwork } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class SocialService {
-  private readonly COLLECTION = 'social';
+  private firestore = inject(Firestore);
+  private injector = inject(Injector);
 
-  constructor(private firestore: Firestore) {}
+  private readonly COLLECTION = 'social';
 
   // ── Obtener todas las redes ────────────────────────
   getNetworks(): Observable<SocialNetwork[]> {
-    const ref = collection(this.firestore, this.COLLECTION);
-    const q = query(ref, orderBy('order', 'asc'));
-
-    return collectionData(q, { idField: 'id' }).pipe(
-      map((docs) => docs.map((d) => this.mapNetwork(d))),
-    );
+    return runInInjectionContext(this.injector, () => {
+      const ref = collection(this.firestore, this.COLLECTION);
+      const q = query(ref, orderBy('order', 'asc'));
+      return collectionData(q, { idField: 'id' }).pipe(
+        map((docs) => docs.map((d) => this.mapNetwork(d))),
+      );
+    });
   }
 
   // ── Añadir red ─────────────────────────────────────

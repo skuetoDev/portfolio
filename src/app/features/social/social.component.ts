@@ -2,13 +2,14 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { SectionTitleComponent } from '../../shared/components/section-title/section-title.component';
+import { SvgIconComponent } from '../../shared/components/svg-icon/svg-icon.component';
 import { SocialService } from '../../core/services/social.service';
 import { SocialNetwork } from '../../core/models';
 
 @Component({
   selector: 'app-social',
   standalone: true,
-  imports: [CommonModule, TranslateModule, SectionTitleComponent],
+  imports: [CommonModule, TranslateModule, SectionTitleComponent, SvgIconComponent],
   templateUrl: './social.component.html',
   styleUrls: ['./social.component.scss'],
 })

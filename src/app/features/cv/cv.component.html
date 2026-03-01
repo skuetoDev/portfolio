@@ -14,15 +14,13 @@
 
       <!-- Previsualización + botón descargar -->
       <div class="cv-preview-wrap">
-      @if (safePdfUrl()) {
+      @if (googleDocsPreviewUrl()) {
           <div class="cv-preview-frame">
             <iframe
-              [src]="safePdfUrl()!"
+              [src]="googleDocsPreviewUrl()! | safeUrl"
               class="cv-preview-frame__iframe"
               title="CV Preview"
-              scrolling="no"
             ></iframe>
-            <div class="cv-preview-frame__overlay" (click)="downloadCv()"></div>
           </div>
         }
         @if(p.cvFileUrl){

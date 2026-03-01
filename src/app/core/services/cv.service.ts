@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, inject, runInInjectionContext } from '@angular/core';
 import {
   Firestore,
   doc,
@@ -13,13 +13,16 @@ import { CvProfile, Experience } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class CvService {
+  private firestore = inject(Firestore);
+  private injector = inject(Injector);
+
   private readonly DOC_PATH = 'cv/profile';
 
-  constructor(private firestore: Firestore) {}
-
   getProfile(): Observable<CvProfile> {
-    const docRef = doc(this.firestore, this.DOC_PATH);
-    return docData(docRef).pipe(map((data: any) => this.mapProfile(data)));
+    return runInInjectionContext(this.injector, () => {
+      const docRef = doc(this.firestore, this.DOC_PATH);
+      return docData(docRef).pipe(map((data: any) => this.mapProfile(data)));
+    });
   }
 
   updateExperiences(experiences: Experience[]): Observable<void> {
@@ -50,7 +53,7 @@ export class CvService {
 
   private mapProfile(data: any): CvProfile {
     return {
-      cvFileUrl: data?.['cvFileUrl'] || '/assets/cv/marioCV.pdf',
+      cvFileUrl: data?.['cvFileUrl'] || './assets/cv/marioCV.pdf',
       lastUpdated: data?.['lastUpdated']?.toDate?.() || new Date(),
       experiences: (data?.['experiences'] || []).map((e: any) => ({
         company: e.company || '',

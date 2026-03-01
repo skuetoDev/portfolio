@@ -6,13 +6,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { SvgIconComponent } from '../../../shared/components/svg-icon/svg-icon.component';
 import { SocialService } from '../../../core/services/social.service';
 import { SocialNetwork } from '../../../core/models';
 
 @Component({
   selector: 'app-manage-social',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, SvgIconComponent],
   templateUrl: './manage-social.component.html',
   styleUrls: ['./manage-social.component.scss'],
 })
@@ -45,7 +46,6 @@ export class ManageSocialComponent implements OnInit {
         network?.url || '',
         [Validators.required, Validators.pattern('https?://.+')],
       ],
-      icon: [network?.icon || '', Validators.required],
       order: [network?.order ?? this.networks().length],
       visible: [network?.visible ?? true],
     });
