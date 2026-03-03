@@ -29,7 +29,8 @@
     "WORK_DETAIL": {
       "SHOW_PROYECT": "View Project",
       "TECHNOLOGIES": "Technologies",
-      "REPO": "View Repository"
+      "REPO": "View Repository",
+      "LIVE": "Visit Website"
     },
     "ITEMS": {
       "example_project": "This is an example project description in English. Replace this key with your project's Firestore id."
