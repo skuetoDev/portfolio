@@ -30,6 +30,9 @@
       "SHOW_PROYECT": "Ver Proyecto",
       "TECHNOLOGIES": "Tecnologías",
       "REPO": "Ver Repositorio"
+    },
+    "ITEMS": {
+      "example_project": "Esta es una descripción de proyecto de ejemplo en español. Reemplaza esta clave con el id de tu proyecto en Firestore."
     }
   },
   "CONTACT": {
@@ -67,7 +70,13 @@
     "TITLE": "Mi Trayectoria",
     "DOWNLOAD": "Descargar CV",
     "EXPERIENCE": "Experiencia Profesional",
-    "PRESENT": "Actualidad"
+    "PRESENT": "Actualidad",
+    "CLICK": "Haz clic encima de la imagen para descargar mi CV"
   },
-  "FOOTER": { "RIGHTS": "Todos los derechos reservados" }
+  "FOOTER": { "RIGHTS": "Todos los derechos reservados" },
+  "404": {
+    "TITLE": "Oops! Pagina no encontrada",
+    "SUBTITLE": "La página que estás buscando no existe o ha sido transladada.",
+    "CTA": "Volver a Inicio"
+  }
 }
