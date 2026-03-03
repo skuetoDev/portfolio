@@ -2,31 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://skueto.dev/</loc>
+    <loc>https://skuetodev.es/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://skueto.dev/works</loc>
+    <loc>https://skuetodev.es/works</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://skueto.dev/cv</loc>
+    <loc>https://skuetodev.es/cv</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://skueto.dev/social</loc>
+    <loc>https://skuetodev.es/social</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://skueto.dev/contact</loc>
+    <loc>https://skuetodev.es/contact</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

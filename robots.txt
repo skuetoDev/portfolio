@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /login
 
-Sitemap: https://skueto.dev/sitemap.xml
+Sitemap: https://skuetodev.es/sitemap.xml
