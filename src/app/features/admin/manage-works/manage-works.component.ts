@@ -21,6 +21,7 @@ export class ManageWorksComponent implements OnInit {
   works = signal<Work[]>([]);
   loading = signal(true);
   saving = signal(false);
+  saveError = signal<string | null>(null);
   showForm = signal(false);
   editingId = signal<string | null>(null);
 
@@ -30,7 +31,8 @@ export class ManageWorksComponent implements OnInit {
   // Iconos disponibles en public/icons/technologies/
   readonly techIcons = [
     'angular', 'css', 'docker', 'html5', 'java', 'javascript',
-    'laravel', 'mariadb', 'mongodb', 'nodejs', 'php', 'scss', 'wordpress',
+    'laravel', 'mariadb', 'mongodb', 'nodejs', 'php', 'sass', 'wordpress',
+    'tailwind', 'firebase','typescript'
   ];
 
   constructor(
@@ -67,6 +69,7 @@ export class ManageWorksComponent implements OnInit {
       mediaUrl: [work?.mediaUrl || '', Validators.required],
       mediaType: [work?.mediaType || 'image'],
       repoUrl: [work?.repoUrl || ''],
+      liveUrl: [work?.liveUrl || ''],
       order: [work?.order ?? 0],
       visible: [work?.visible ?? true],
     });
@@ -108,7 +111,13 @@ export class ManageWorksComponent implements OnInit {
 
   // ── Guardar ────────────────────────────────────────
   onSubmit(): void {
-    if (this.form.invalid) return;
+    this.saveError.set(null);
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     this.saving.set(true);
 
     const val = this.form.value;
@@ -119,6 +128,7 @@ export class ManageWorksComponent implements OnInit {
       mediaUrl: val.mediaUrl,
       mediaType: val.mediaType,
       repoUrl: val.repoUrl || '',
+      liveUrl: val.liveUrl || '',
       technologies: this.selectedTechs().map((name) => ({
         name: name.charAt(0).toUpperCase() + name.slice(1),
         svgUrl: `icons/technologies/${name}.svg`,
@@ -140,6 +150,7 @@ export class ManageWorksComponent implements OnInit {
       error: (err) => {
         console.error(err);
         this.saving.set(false);
+        this.saveError.set('Error al guardar. Revisa los permisos de Firestore o la consola.');
       },
     });
   }

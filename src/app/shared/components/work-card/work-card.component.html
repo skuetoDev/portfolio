@@ -3,9 +3,7 @@
   <!-- Media -->
   <div class="work-card__media">
     @if (work.mediaType === 'video') {
-      <video [src]="work.mediaUrl | safeUrl" muted loop playsinline
-             (mouseenter)="$any($event.target).play()"
-             (mouseleave)="$any($event.target).pause()">
+      <video [src]="work.mediaUrl | safeUrl" muted loop playsinline autoplay>
       </video>
     } @else {
       <img [src]="work.mediaUrl | safeUrl" [alt]="work.title" loading="lazy" />
@@ -18,7 +16,7 @@
   <!-- Contenido -->
   <div class="work-card__body">
     <h3 class="work-card__title">{{ work.title }}</h3>
-    <p class="work-card__desc">{{ description | truncate:100:'… leer más' }}</p>
+    <p class="work-card__desc">{{ description() | truncate:100 }}</p>
 
     <!-- Tecnologías -->
     <div class="work-card__techs">
@@ -50,24 +48,40 @@
         </div>
 
         <div class="work-detail__body">
-          <p class="work-detail__desc">{{ description }}</p>
+          <p class="work-detail__desc">{{ description() }}</p>
           <h2 class="work-detail__subtitle">{{ 'WORKS.WORK_DETAIL.TECHNOLOGIES' | translate }}</h2>
+          <diV>
+            
+          </diV>
+          <div class="work-detail__footer">
+            @if (work.technologies.length) {
+              <div class="tech-row">
+                @for (tech of work.technologies; track tech.name) {
+                  <app-tech-badge class="icon-option" [technology]="tech" />
+                }
+              </div>
+            }
 
-          @if (work.technologies.length) {
-            <div class="tech-grid">
-              @for (tech of work.technologies; track tech.name) {
-                <app-tech-badge class="icon-option" [technology]="tech" />
-              }
-            </div>
-          }
+            @if (work.liveUrl || work.repoUrl) {
+              <div class="work-detail__actions">
+                @if (work.liveUrl) {
+                  <a [href]="work.liveUrl" target="_blank" rel="noopener noreferrer"
+                     class="work-detail__repo work-detail__repo--live">
+                    <app-svg-icon src="icons/world.svg" />
+                    {{ 'WORKS.WORK_DETAIL.LIVE' | translate }}
+                  </a>
+                }
+                @if (work.repoUrl) {
+                  <a [href]="work.repoUrl" target="_blank" rel="noopener noreferrer"
+                     class="work-detail__repo">
+                    <app-svg-icon src="icons/github.svg" />
+                    {{ 'WORKS.WORK_DETAIL.REPO' | translate }}
+                  </a>
+                }
+              </div>
+            }
 
-          @if (work.repoUrl) {
-            <a [href]="work.repoUrl" target="_blank" rel="noopener noreferrer"
-               class="work-detail__repo">
-              <app-svg-icon src="icons/github.svg" />
-              {{ 'WORKS.WORK_DETAIL.REPO' | translate }}
-            </a>
-          }
+          </div>    
         </div>
       </div>
 

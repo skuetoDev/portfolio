@@ -82,11 +82,25 @@
           <div class="form-field">
             <label>Título *</label>
             <input type="text" formControlName="title" placeholder="Nombre del proyecto" />
+            @if (form.get('title')?.touched) {
+              @if (form.get('title')?.hasError('required')) {
+                <span class="field-error">El título es obligatorio</span>
+              } @else if (form.get('title')?.hasError('maxlength')) {
+                <span class="field-error">Máximo 100 caracteres (tienes {{ form.get('title')?.value?.length }})</span>
+              }
+            }
           </div>
 
           <div class="form-field">
-            <label>Descripción (ES) *</label>
+            <label>Descripción (ES) * <span class="char-count">{{ form.get('descEs')?.value?.length ?? 0 }}/500</span></label>
             <textarea formControlName="descEs" rows="3" placeholder="Descripción en español"></textarea>
+            @if (form.get('descEs')?.touched) {
+              @if (form.get('descEs')?.hasError('required')) {
+                <span class="field-error">La descripción en español es obligatoria</span>
+              } @else if (form.get('descEs')?.hasError('maxlength')) {
+                <span class="field-error">Máximo 500 caracteres (tienes {{ form.get('descEs')?.value?.length }})</span>
+              }
+            }
           </div>
 
           <div class="form-field">
@@ -96,8 +110,11 @@
 
           <div class="form-field">
             <label>URL de imagen o video *</label>
-            <input type="url" formControlName="mediaUrl"
+            <input type="text" formControlName="mediaUrl"
                    placeholder="https://i.imgur.com/ejemplo.jpg" />
+            @if (form.get('mediaUrl')?.invalid && form.get('mediaUrl')?.touched) {
+              <span class="field-error">La URL del media es obligatoria</span>
+            }
 
             @if (form.get('mediaUrl')?.value) {
               <div class="media-preview">
@@ -124,8 +141,14 @@
 
           <div class="form-field">
             <label>URL del repositorio (GitHub)</label>
-            <input type="url" formControlName="repoUrl"
+            <input type="text" formControlName="repoUrl"
                    placeholder="https://github.com/usuario/repo" />
+          </div>
+
+          <div class="form-field">
+            <label>URL de la web en producción</label>
+            <input type="text" formControlName="liveUrl"
+                   placeholder="https://miweb.com" />
           </div>
 
           <div class="form-row form-row--small">
@@ -160,9 +183,13 @@
             </div>
           </div>
 
+          @if (saveError()) {
+            <p class="field-error field-error--global">{{ saveError() }}</p>
+          }
+
           <div class="modal__footer">
             <button type="button" class="btn-secondary" (click)="closeForm()">Cancelar</button>
-            <button type="submit" class="btn-primary" [disabled]="saving() || form.invalid">
+            <button type="submit" class="btn-primary" [disabled]="saving()">
               {{ saving() ? 'Guardando...' : (editingId() ? 'Guardar' : 'Crear') }}
             </button>
           </div>

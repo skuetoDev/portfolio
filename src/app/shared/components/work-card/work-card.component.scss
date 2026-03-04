@@ -17,6 +17,7 @@
     .work-card__media video { transform: scale(1.05); }
   }
 
+
   // Media
   &__media {
     position: relative;
@@ -46,11 +47,15 @@
   }
 
   &__view-label {
-    color: white;
-    font-weight: 700;
-    font-size: 1rem;
+    color:var(--golden-color);
+    font-weight: 800;
+    font-size: 1.2rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+    text-shadow:
+      0 0 4px  rgba(0, 0, 0, 1),
+      0 0 12px rgba(0, 0, 0, 0.95),
+      0 0 28px rgba(0, 0, 0, 0.8);
   }
 
   // Body
@@ -78,14 +83,17 @@
     line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    height: 65px;
   }
 
   &__techs {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
     gap: var(--space-xs);
     margin-top: auto;
-    padding-top: var(--space-sm);
+    height:210px;
+    align-content: start;
+    overflow: hidden;
   }
 }
 
@@ -186,6 +194,19 @@
     color: var(--color-text-muted);
     line-height: 1.7;
   }
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+  }
 
   &__techs {
     display: grid;
@@ -211,6 +232,12 @@
       width: 18px;
       height: 18px;
       color: var(--color-text);
+
+      svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
     }
 
     &:hover {
@@ -219,13 +246,18 @@
 
       app-svg-icon { color: var(--color-accent-light); }
     }
+
+    &--live:hover {
+      background: color-mix(in srgb, var(--golden-color) 80%, black);
+      border-color: var(--golden-color);
+    }
   }
 }
 
-.tech-grid {
+.tech-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-  gap: var(--space-sm);
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: var(--space-xs);
 }
 
 .icon-option {
@@ -236,16 +268,26 @@
   gap: 7px;
   padding: 10px 8px;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: 1px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
   color: var(--color-text-muted);
 
   app-svg-icon { width: 28px; height: 28px; }
-  span { font-size: 0.65rem; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%; }
+  span { 
+    font-size: 0.65rem; 
+    text-align: center; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    width: 100%; 
+  }
 
-  &:hover { border-color: var(--golden-color); color: var(--color-text); }
+  &:hover { 
+    border-color: var(--golden-color); 
+    color: var(--color-text); 
+  }
 }
 
 @keyframes fadeIn {

@@ -3,13 +3,11 @@
   flex-direction: column;
   align-items: center;
   gap: 7px;
-  padding: 10px 8px;
-  background: var(--color-surface);
   color: var(--color-text-muted);
   font-size: 0.65rem;
   font-weight: 500;
   white-space: nowrap;
-  width: 72px;
+  width: 52px;
   transition: all var(--transition-fast);
 
   &:hover {
@@ -18,8 +16,13 @@
   }
 
   &__icon {
-    width: 28px;
-    height: 28px;
+    width: 18px;
+    height: 18px;
     object-fit: contain;
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
   }
 }

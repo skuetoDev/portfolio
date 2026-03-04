@@ -3,7 +3,7 @@
     "HOME": "Home",
     "WORKS": "Projects",
     "CONTACT": "Contact",
-    "SOCIAL": "Social",
+    "SOCIAL": "Socials",
     "CV": "CV"
   },
   "HOME": {
@@ -17,8 +17,8 @@
     "PREVIEW_SOCIAL": "Find me on main social networks",
     "PREVIEW_CONTACT": "Want to talk? Send me a message",
     "FEATURED_TAG": "Featured",
-    "FEATURED_TITLE": "Latest works",
-    "SEE_ALL_WORKS": "See all works"
+    "FEATURED_TITLE": "Latest Projects",
+    "SEE_ALL_WORKS": "See all Projects"
   },
   "WORKS": {
     "TAG": "Portfolio",
@@ -29,7 +29,11 @@
     "WORK_DETAIL": {
       "SHOW_PROYECT": "View Project",
       "TECHNOLOGIES": "Technologies",
-      "REPO": "View Repository"
+      "REPO": "View Repository",
+      "LIVE": "Visit Website"
+    },
+    "ITEMS": {
+      "example_project": "This is an example project description in English. Replace this key with your project's Firestore id."
     }
   },
   "CONTACT": {
@@ -58,16 +62,22 @@
     }
   },
   "SOCIAL": {
-    "TAG": "Social",
+    "TAG": "Socials",
     "TITLE": "You can find me on",
-    "SUBTITLE": "the following social networks, Let's connect!"
+    "SUBTITLE": "the following social networks. Let's connect!"
   },
   "CV": {
     "TAG": "CV",
     "TITLE": "My Career Path",
     "DOWNLOAD": "Download CV",
     "EXPERIENCE": "Professional Experience",
-    "PRESENT": "Present"
+    "PRESENT": "Present",
+    "CLICK": "Click on the image to download my CV"
   },
-  "FOOTER": { "RIGHTS": "All rights reserved" }
+  "FOOTER": { "RIGHTS": "All rights reserved" },
+  "404": {
+    "TITLE": "Oops! Page not found",
+    "SUBTITLE": "The page you're looking for doesn't exist or has been moved.",
+    "CTA": "Go back to Home"
+  }
 }

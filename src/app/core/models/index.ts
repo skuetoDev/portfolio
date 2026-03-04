@@ -4,6 +4,7 @@ export interface Work {
   title: string;
   description: string; // Soportará i18n con objeto {es, en}
   descriptionI18n: { [lang: string]: string };
+  descriptionKey?: string; // Clave i18n para usar con translate pipe: 'WORKS.ITEMS.my_project'
   mediaUrl: string; // URL imagen o video en Firebase Storage
   mediaType: 'image' | 'video';
   technologies: Technology[];
@@ -11,6 +12,7 @@ export interface Work {
   visible: boolean;
   createdAt: Date;
   repoUrl?: string;
+  liveUrl?: string;
 }
 
 // === TECNOLOGÍA ===
@@ -44,7 +46,8 @@ export interface Experience {
 
 // === PERFIL CV ===
 export interface CvProfile {
-  cvFileUrl: string; // URL del PDF en Firebase Storage
+  cvFileUrl: string;       // URL del PDF en Firebase Storage
+  previewImageUrl?: string; // URL de la imagen de previsualización en Storage
   lastUpdated: Date;
   experiences: Experience[];
 }

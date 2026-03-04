@@ -1,15 +1,14 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SectionTitleComponent } from '../../shared/components/section-title/section-title.component';
-import { SafeUrlPipe } from '../../shared/pipes/safe-url.pipe';
 import { CvService } from '../../core/services/cv.service';
 import { CvProfile, Experience } from '../../core/models';
 
 @Component({
   selector: 'app-cv',
   standalone: true,
-  imports: [CommonModule, TranslateModule, SectionTitleComponent, SafeUrlPipe],
+  imports: [CommonModule, TranslateModule, SectionTitleComponent],
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.scss'],
 })
@@ -18,20 +17,11 @@ export class CvComponent implements OnInit {
   loading = signal(true);
   currentLang = signal('es');
 
-  // Google Docs Viewer funciona en móvil (Chrome Android no renderiza PDFs en iframes nativamente)
-  googleDocsPreviewUrl = computed<string | null>(() => {
-    const url = this.profile()?.cvFileUrl;
-    if (!url) return null;
-    const absoluteUrl = url.startsWith('http')
-      ? url
-      : new URL(url, window.location.href).href;
-    return `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
-  });
-
   constructor(
     private cvService: CvService,
     translate: TranslateService,
   ) {
+    this.currentLang.set(translate.getCurrentLang() || 'es');
     translate.onLangChange.subscribe(({ lang }) => this.currentLang.set(lang));
   }
 

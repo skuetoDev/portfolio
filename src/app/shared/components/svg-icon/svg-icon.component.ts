@@ -10,7 +10,6 @@ import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
   styles: [`
     app-svg-icon        { display: contents; }
     app-svg-icon span   { display: contents; }
-    app-svg-icon svg    { width: 100%; height: 100%; }
   `],
   encapsulation: ViewEncapsulation.None,
 })

@@ -1,3 +1,25 @@
+.char-count {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-left: var(--space-xs);
+}
+
+.field-error {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: #e05252;
+
+  &--global {
+    margin-bottom: var(--space-sm);
+    padding: var(--space-sm);
+    background: rgba(224, 82, 82, 0.1);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(224, 82, 82, 0.3);
+  }
+}
+
 // Fila listado
 .work-order {
   font-size: 0.75rem;

@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, Input, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Work } from '../../../core/models/index';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -18,14 +18,15 @@ export class WorkCardComponent {
   @Input() work!: Work;
 
   isModalOpen = signal(false);
-  currentLang = signal('es');
+  private currentLang = signal('es');
+
+  description = computed(() =>
+    this.work?.descriptionI18n?.[this.currentLang()] || this.work?.description || ''
+  );
 
   constructor(translate: TranslateService) {
+    this.currentLang.set(translate.getCurrentLang() || 'es');
     translate.onLangChange.subscribe(({ lang }) => this.currentLang.set(lang));
-  }
-
-  get description(): string {
-    return this.work.descriptionI18n?.[this.currentLang()] || this.work.description || '';
   }
 
   openModal(): void {

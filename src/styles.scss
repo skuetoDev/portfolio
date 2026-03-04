@@ -124,11 +124,17 @@ input, textarea, select {
 
 // Sección base
 .section {
-  padding: var(--space-2xl) 0;
+  padding: 6rem 0;
 
   @media (max-width: 768px) {
     padding: var(--space-xl) 0;
   }
+}
+
+// SVG dentro de botones de acción (repo / live)
+.work-detail__repo app-svg-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 // Botón primario

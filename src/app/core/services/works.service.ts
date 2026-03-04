@@ -68,6 +68,7 @@ export class WorksService {
       visible: data['visible'] ?? true,
       createdAt: data['createdAt']?.toDate?.() || new Date(),
       repoUrl: data['repoUrl'] || '',
+      liveUrl: data['liveUrl'] || '',
     };
   }
 }
