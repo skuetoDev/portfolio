@@ -44,7 +44,7 @@
         <h2 class="experience__title">{{ 'CV.EXPERIENCE' | translate }}</h2>
       
         <div class="timeline">
-          @for (exp of p.experiences; track exp.company) {
+          @for (exp of sortedExperiences(); track exp.company) {
             <div class="timeline__item">
       
               <div class="timeline__marker">

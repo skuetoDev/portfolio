@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SectionTitleComponent } from '../../shared/components/section-title/section-title.component';
@@ -16,6 +16,7 @@ export class CvComponent implements OnInit {
   profile = signal<CvProfile | null>(null);
   loading = signal(true);
   currentLang = signal('es');
+  
 
   constructor(
     private cvService: CvService,
@@ -24,6 +25,7 @@ export class CvComponent implements OnInit {
     this.currentLang.set(translate.getCurrentLang() || 'es');
     translate.onLangChange.subscribe(({ lang }) => this.currentLang.set(lang));
   }
+  
 
   ngOnInit(): void {
     this.cvService.getProfile().subscribe((profile) => {
@@ -48,4 +50,10 @@ export class CvComponent implements OnInit {
     a.download = 'marioCV.pdf';
     a.click();
   }
+  
+  sortedExperiences = computed(() =>
+    [...(this.profile()?.experiences ?? [])].sort(
+      (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+    )
+  );
 }
