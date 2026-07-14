@@ -40,7 +40,7 @@ export class ManageCvComponent implements OnInit {
 
   // ── PDF ────────────────────────────────────────────
   updateCvUrl(): void {
-    const url = '/assets/cv/marioCV.pdf';
+    const url = '/assets/cv/marioGarciaCV.pdf';
     this.cvService.updateCvUrl(url).subscribe({
       next: () => alert('✅ URL del CV actualizada'),
       error: (e) => console.error(e),

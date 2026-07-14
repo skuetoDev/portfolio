@@ -47,7 +47,7 @@ export class CvComponent implements OnInit {
     if (!url) return;
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'marioCV.pdf';
+    a.download = 'marioGarciaCV.pdf';
     a.click();
   }
   

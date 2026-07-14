@@ -43,7 +43,7 @@ export class CvService {
 
   private mapProfile(data: any): CvProfile {
     return {
-      cvFileUrl: data?.['cvFileUrl'] || './assets/cv/marioCV.pdf',
+      cvFileUrl: data?.['cvFileUrl'] || './assets/cv/marioGarciaCV.pdf',
       lastUpdated: data?.['lastUpdated']?.toDate?.() || new Date(),
       experiences: (data?.['experiences'] || []).map((e: any) => ({
         company: e.company || '',
